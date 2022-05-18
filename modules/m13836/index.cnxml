@@ -1,0 +1,422 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml">
+  <title>Introduction to Graphing in M-File Environments</title>
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>3480252b-b5ca-49f9-8d6e-0ba2bd1312b5</md:uuid>
+</metadata>
+<content>
+    <para id="delete_me">
+        One of the reasons that m-file environments are extensively used by engineers is their capability to provide graphical representations of data and computed values. In this module, we introduced the basics of graphing data in m-file environments through a series of examples.  This module uses some fundamental operations on vectors that are explained in <link document="m13355">Vectors and Arrays in M-File Environments</link>.
+    </para>
+    <example id="element-431">
+        <para id="element-579">The table below shows speed as a function of distance for a braking Dodge Viper  decelerating from 70MPH to 0MPH.
+
+            <note id="idm1844128">This data was not measured; it was computed using the <link url="http://www.caranddriver.com/article.asp?section_id=33&amp;article_id=2420&amp;page_number=2"> stopping distance reported for a Dodge Viper</link> and assuming constant deceleration.  Thus, it may not accurately reflect the braking characteristics of a real Dodge Viper.</note>
+            <table id="element-191" summary="">
+                <title>Dodge Viper Stopping Data</title>
+                <tgroup cols="2"><tbody>
+                    <row>
+                        <entry>Distance (ft)</entry>
+                        <entry>Velocity (ft/s)</entry>
+                    </row>
+                    <row>
+                        <entry>0</entry>
+                        <entry>102.7</entry>
+                    </row>
+                    <row>
+                        <entry>29.1</entry>
+                        <entry>92.4</entry>
+                    </row>
+                    <row>
+                        <entry>55.1</entry>
+                        <entry>82.1</entry>
+                    </row>
+                    <row>
+                        <entry>78.0</entry>
+                        <entry>71.9</entry>
+                    </row>
+                    <row>
+                        <entry>97.9</entry>
+                        <entry>61.6</entry>
+                    </row>
+                    <row>
+                        <entry>114.7</entry>
+                        <entry>51.3</entry>
+                    </row>
+                    <row>
+                        <entry>128.5</entry>
+                        <entry>41.1</entry>
+                    </row>
+                    <row>
+                        <entry>139.2</entry>
+                        <entry>30.8</entry>
+                    </row>
+                    <row>
+                        <entry>146.9</entry>
+                        <entry>20.5</entry>
+                    </row>
+                    <row>
+                        <entry>151.5</entry>
+                        <entry>10.3</entry>
+                    </row>
+                    <row>
+                        <entry>153.0</entry>
+                        <entry>0.0</entry>
+                    </row>
+                </tbody>
+
+            </tgroup>
+        </table>
+        The following commands will create a graph of velocity as a function of distance:
+<code display="block" id="idm146512">dist = [0 29.1 55.1 78.0 97.9 114.7 128.5 139.2 146.9 151.5 153.0]
+vel = [102.7 92.4 82.1 71.9 61.6 51.3 41.1 30.8 20.5 10.3 0.0]
+plot(dist,vel)</code>
+            <link target-id="element-302"/> shows the graph created by these commands.
+            <figure id="element-302">
+                <media id="idm448032" alt=""><image src="../../media/Viper.png" mime-type="image/png"/><image for="pdf" src="../../media/Viper.eps" mime-type="application/postscript"/></media>
+                <caption>
+                    Graph of the Viper's velocity as a function of distance.
+                </caption>
+            </figure>
+            This graph shows the data, but violates several important conventions of engineering practice. The axes are not labeled with quantity and units, and the graph does not have a title. The following commands, when executed after the plot command, will label the axes and place a title on the graph.
+<code display="block" id="idp1451600">xlabel('Distance (ft)')
+ylabel('Velocity (ft/s)')
+title('Velocity vs Distance for the Dodge Viper')
+</code>
+            The results of these commands are shown in <link target-id="element-30222"/>.
+            <figure id="element-30222">
+                <media id="idm2536736" alt=""><image src="../../media/Viper2.png" mime-type="image/png"/><image for="pdf" src="../../media/Viper2.eps" mime-type="application/postscript"/></media>
+                <caption>
+                    Graph of the Viper's velocity as a function of distance.  The graph has a title and labels on the axes.
+                </caption>
+            </figure>
+        </para>
+    </example>
+    <para id="bob2882">After creating a figure, you may wish to insert it into a document. The method to do this depends on the m-file environment, the document editor and the operating system you are using.
+        <note type="MATLAB, Word, and Windows" id="idm3667696"><label>MATLAB, Word, and Windows</label>
+            To paste a figure into a Word document on Windows, pull down the <emphasis>Edit</emphasis> menu of the window of the MATLAB figure you wish to paste, and select <emphasis>Copy Figure</emphasis>. Then go to the Word document into which you wish to insert the figure and use the paste command.
+        </note>
+    </para>
+
+    <exercise id="element-713">
+        <problem id="idm9352912">
+            <para id="element-316">
+                Repeat <link target-id="element-431"/> using the following data for a Hummer H2:
+                <note id="idm2081776">As in <link target-id="element-431"/>, this data was not measured; it was computed using the <link url="http://www.caranddriver.com/article.asp?section_id=33&amp;article_id=2420&amp;page_number=2"> stopping distance reported for a Hummer H2</link> and assuming constant deceleration.</note>
+                <table id="element-191a" summary="">
+                    <title>Hummer H2 Stopping Data</title>
+                    <tgroup cols="2">
+                        <tbody>
+                            <row>
+                                <entry>Distance (ft)</entry>
+                                <entry>Velocity (ft/s)</entry>
+                            </row>
+                            <row>
+                                <entry>0</entry>
+                                <entry>102.7</entry>
+                            </row>
+                            <row>
+                                <entry>46.3</entry>
+                                <entry>92.4</entry>
+                            </row>
+                            <row>
+                                <entry>87.8</entry>
+                                <entry>82.1</entry>
+                            </row>
+                            <row>
+                                <entry>124.4</entry>
+                                <entry>71.9</entry>
+                            </row>
+                            <row>
+                                <entry>156.1</entry>
+                                <entry>61.6</entry>
+                            </row>
+                            <row>
+                                <entry>182.9</entry>
+                                <entry>51.3</entry>
+                            </row>
+                            <row>
+                                <entry>204.9</entry>
+                                <entry>41.1</entry>
+                            </row>
+                            <row>
+                                <entry>222.0</entry>
+                                <entry>30.8</entry>
+                            </row>
+                            <row>
+                                <entry>234.2</entry>
+                                <entry>20.5</entry>
+                            </row>
+                            <row>
+                                <entry>241.5</entry>
+                                <entry>10.3</entry>
+                            </row>
+                            <row>
+                                <entry>244.0</entry>
+                                <entry>0.0</entry>
+                            </row>
+                        </tbody>
+                    </tgroup>
+                </table>
+            </para>
+        </problem>
+        <solution id="idp1570288">
+            <para id="element-906">
+                <link target-id="element-772"/> shows the graph of the Hummer H2 stopping data.
+                <figure id="element-772">
+                    <media id="idp885456" alt=""><image src="../../media/H2.png" mime-type="image/png"/><image for="pdf" src="../../media/H2.eps" mime-type="application/postscript"/></media>
+                    <caption>
+                        Graph of the H2 velocity as a function of distance.
+                    </caption>
+                </figure>
+            </para>
+        </solution>
+    </exercise>
+    <example id="element-431a">
+        <para id="element-579a">An m-file environment can also be used to plot functions. For example, the following commands plot
+            <m:math>
+                <m:apply>
+                    <m:cos/>
+                    <m:ci>x</m:ci>
+                </m:apply>
+            </m:math>
+            over one period.
+<code display="block" id="idm2611632">x = 0:0.1:2*pi;
+y=cos(x)
+plot(x,y)
+xlabel('x')
+ylabel('cos(x)')
+title('Plot of cos(x)')
+</code>
+            <link target-id="element-302x"/> shows the graph created by these commands.
+        </para>
+        <figure id="element-302x">
+            <media id="idp1047168" alt=""><image src="../../media/Cos.png" mime-type="image/png"/><image for="pdf" src="../../media/Cos.eps" mime-type="application/postscript"/></media>
+            <caption>
+                Graph of one period of the cosine function.
+            </caption>
+        </figure>
+    </example>
+    <exercise id="element-713x">
+        <problem id="idm2833184">
+            <para id="element-316x">
+                The module <link document="m13832">Exercises for Basic Mathematical Operations</link> describes how to compute the terminal velocity of a falling sky diver.  Plot the terminal velocity as a function of the sky diver's weight; use weights from 40kg to 500kg.
+            </para>
+        </problem>
+    </exercise>
+    <exercise id="ex99">
+        <problem id="idp3847392">
+            <para id="bob11">
+                In electrical circuit analysis, the equivalent resistance 
+                <m:math>
+                    <m:ci>
+                        <m:msub>
+                            <m:mi>R</m:mi>
+                            <m:mi>eq</m:mi>
+                        </m:msub>
+                    </m:ci>
+                </m:math>
+                of the parallel combination of two resistors
+                <m:math>
+                    <m:ci>
+                        <m:msub>
+                            <m:mi>R</m:mi>
+                            <m:mi>1</m:mi>
+                        </m:msub>
+                    </m:ci>
+                </m:math>
+                and 
+                <m:math>
+                    <m:ci>
+                        <m:msub>
+                            <m:mi>R</m:mi>
+                            <m:mi>2</m:mi>
+                        </m:msub>
+                    </m:ci>
+                </m:math>
+                is given by the equation 
+                <equation id="eq99">
+                    <m:math>
+                        <m:apply>
+                            <m:eq/>
+                            <m:ci>
+                                <m:msub>
+                                    <m:mi>R</m:mi>
+                                    <m:mi>eq</m:mi>
+                                </m:msub>
+                            </m:ci>
+                            <m:apply>
+                                <m:divide/>
+                                <m:cn>1</m:cn>
+                                <m:apply>
+                                    <m:plus/>
+                                    <m:apply>
+                                        <m:divide/>
+                                        <m:cn>1</m:cn>
+                                        <m:ci>
+                                            <m:msub>
+                                                <m:mi>R</m:mi>
+                                                <m:mi>1</m:mi>
+                                            </m:msub>
+                                        </m:ci>
+                                    </m:apply>
+                                    <m:apply>
+                                        <m:divide/>
+                                        <m:cn>1</m:cn>
+                                        <m:ci>
+                                            <m:msub>
+                                                <m:mi>R</m:mi>
+                                                <m:mi>2</m:mi>
+                                            </m:msub>
+                                        </m:ci>
+                                    </m:apply>
+                                </m:apply>
+                            </m:apply>   
+                        </m:apply>  
+                    </m:math>
+                </equation>
+                Set
+                <m:math>
+                    <m:apply>
+                        <m:eq/>
+                        <m:ci>
+                            <m:msub>
+                                <m:mi>R</m:mi>
+                                <m:mi>2</m:mi>
+                            </m:msub>
+                        </m:ci>
+                        <m:cn>1000 Ohms</m:cn>
+                    </m:apply>
+                </m:math>
+                and plot 
+                <m:math>
+                    <m:ci>
+                        <m:msub>
+                            <m:mi>R</m:mi>
+                            <m:mi>eq</m:mi>
+                        </m:msub>
+                    </m:ci>
+                </m:math>
+                for values of 
+                <m:math>
+                    <m:ci>
+                        <m:msub>
+                            <m:mi>R</m:mi>
+                            <m:mi>1</m:mi>
+                        </m:msub>
+                    </m:ci>
+                </m:math>
+                from 100 Ohms to 3000 Ohms.
+            </para>
+        </problem>
+    </exercise>
+    <exercise id="ex1818">
+        <problem id="idm844064">
+            <para id="bobsyouruncle">
+                In an experiment, a small steel ball is dropped and videoed against a checkered background.  The video sequence is analyzed to determine the height of the ball as a function of time to give the data in the following table:
+                <table id="element-191ab" summary="">
+                    <title>Height and Time Data</title>
+                    <tgroup cols="2">
+                        <tbody>
+                            <row>
+                                <entry>Time (s)</entry>
+                                <entry>Height (in)</entry>
+                            </row>
+                            <row>
+                                <entry>0.0300</entry>
+                                <entry>22.0</entry>
+                            </row>
+                            <row>
+                                <entry>0.0633</entry>
+                                <entry>21.5</entry>
+                            </row>
+                            <row>
+                                <entry>0.0967</entry>
+                                <entry>20.5</entry>
+                            </row>
+                            <row>
+                                <entry>0.1300</entry>
+                                <entry>18.8</entry>
+                            </row>
+                            <row>
+                                <entry>0.1633</entry>
+                                <entry>17.0</entry>
+                            </row>
+                            <row>
+                                <entry>0.1967</entry>
+                                <entry>14.5</entry>
+                            </row>
+                            <row>
+                                <entry>0.2300</entry>
+                                <entry>12.0</entry>
+                            </row>
+                            <row>
+                                <entry>0.2633</entry>
+                                <entry>8.0</entry>
+                            </row>
+                            <row>
+                                <entry>0.2967</entry>
+                                <entry>3.0</entry>
+                            </row>
+                        </tbody>
+                    </tgroup>
+                </table>
+                This experimental data is to be compared to the theoretically expected values given by the following equation:
+                <equation id="eqxx">
+                    <m:math>
+                        <m:apply>
+                            <m:eq/>
+                            <m:ci>h</m:ci>
+                            <m:apply>
+                                <m:minus/>
+                                <m:cn>22 in</m:cn>
+                                <m:apply>
+                                    <m:times/>
+                                    <m:apply>
+                                        <m:divide/>
+                                        <m:cn>1</m:cn>
+                                        <m:cn>2</m:cn>
+                                    </m:apply>
+                                    <m:ci>g</m:ci>
+                                    <m:apply>
+                                        <m:power/>
+                                        <m:ci>t</m:ci>
+                                        <m:cn>2</m:cn>
+                                    </m:apply>
+                                </m:apply>   
+                            </m:apply>                         
+                        </m:apply>
+                    </m:math>
+                </equation>
+                where
+                <m:math>
+                    <m:ci>h</m:ci>
+                </m:math>
+                is in inches, 
+                <m:math>
+                    <m:ci>t</m:ci>
+                </m:math>
+                is in seconds, and 
+                <m:math>
+                    <m:apply>
+                        <m:eq/>
+                        <m:ci>g</m:ci>
+                        <m:apply>
+                            <m:times/>
+                            <m:cn>386.4</m:cn>
+                            <m:apply>
+                                <m:divide/>
+                                <m:ci>in</m:ci>
+                                <m:apply>
+                                    <m:power/>
+                                    <m:ci>s</m:ci>
+                                    <m:cn>2</m:cn>
+                                </m:apply>
+                            </m:apply>
+                        </m:apply>
+                    </m:apply>
+                </m:math>.
+                Create a graph that compares the measured data with the theoretically expected values; your graph should conform to good conventions for engineering graphics.  Plot the measured data using <emphasis>red circles</emphasis>, and plot the theoretically expected values using a <emphasis>blue line</emphasis>.
+            </para>
+        </problem>
+    </exercise>
+</content>
+</document>

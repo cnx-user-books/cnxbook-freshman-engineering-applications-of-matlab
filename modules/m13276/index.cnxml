@@ -1,0 +1,148 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml">
+  <title>Programming with M-files: For-Loop Drill Exercises</title>
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>1cbdd893-fb35-492c-a108-9e50e4b0abf9</md:uuid>
+</metadata>
+<content>
+    <section id="SecReview">
+        <title>Some For Loop Exercises</title>
+        <exercise id="ExAa">
+            <problem id="ProbAa">
+                <title>Loop Indices</title>
+                <para id="ParaAa">
+                    How many times will this program print "Hello World"?
+<code display="block" id="idp1801104">for a=0:50
+disp('Hello World')
+end
+</code>
+                </para>
+            </problem>
+            <solution id="idp258592">
+                <para id="SolAa">
+                    The code <code>0:50</code> creates a vector of integers starting at 0 and going to 50; this vector has 51 elements. "Hello World" will be printed once for each element in the vector (51 times).
+                </para>
+            </solution>
+        </exercise>
+        <exercise id="ExAb">
+            <problem id="ProbAb">
+                <title>Loop Indices II</title>
+                <para id="ParaAb">
+                    How many times will this program print "Guten Tag Welt"?
+<code display="block" id="idm8212592">for a=-1:-1:-50
+disp('Guten Tag Welt')
+end
+</code>
+                </para>
+            </problem>
+            <solution id="idm8693168">
+                <para id="SolAb">
+                    The code <code>-1:-1:-50</code> creates a vector of integers starting at -1 and going backward to -50; this vector has 50 elements. "Guten Tag Welt" will be printed once for each element in the vector (50 times).
+                </para>
+            </solution>
+        </exercise>
+
+        <exercise id="ExAc">
+            <problem id="ProbAc">
+                <title>Loop Indices III</title>
+                <para id="ParaAc">
+                    How many times will this program print "Bonjour Monde"?
+<code display="block" id="idm1514848">for a=-1:1:-50
+disp('Bonjour Monde')
+end
+</code>
+                </para>
+            </problem>
+            <solution id="idm8685264">
+                <para id="SolAc">
+                    The code <code>-1:1:-50</code> creates an  empty vector  with no elements. "Bonjour Monde" would be printed once for each element in the vector, but since the vector is empty, it is never printed.
+                </para>
+            </solution>
+        </exercise>
+        <exercise id="ExA">
+            <problem id="ProbA">
+                <title>Nested Loops</title>
+                <para id="ParaA">
+                    How many times will this program print "Hola Mundo"?
+<code display="block" id="idm2089456">for a=10:10:50
+    for b=0:0.1:1
+        disp('Hola Mundo')
+    end
+end
+</code>
+                </para>
+            </problem>
+            <solution id="idm8722160">
+                <para id="SolA">
+                    The outer loop (the loop with <code>a</code>) will be executed five times. Each time the outer loop is executed, the inner loop (the loop with <code>b</code>) will be executed eleven times, since  <code>0:0.1:1</code> creates a vector with 11 elements. "Hola Mundo" will be printed 55 times.
+                </para>
+            </solution>
+        </exercise>
+        <exercise id="ExTwo">
+            <problem id="ProbTwo">
+                <title>A tricky loop</title>
+                <para id="ParaTwo">
+                    What sequence of numbers will the following for loop print?
+<code display="block" id="idp5310336">n = 10;
+for j = 1:n
+    n = n-1;
+    j
+end
+</code>
+                    Explain why this code does what it does.
+                </para>
+            </problem>
+            <solution id="idm958576">
+                <para id="SolTwo">
+                    In the first line, the value of <code>n</code> is set to 10.  The code <code>1:n</code> creates a vector of integers from 1 to 10.  Each iteration through the loop sets <code>j</code> to the next element of this vector,  so <code>j</code> will be sent to each value 1 through 10 in succession, and this sequence of values will be printed.  Note that each time through the loop, the value of <code>n</code> is decreased by 1; the final value of <code>n</code> will be 0. Even though the value of <code>n</code> is changed in the loop, the number of iterations through the loop is not affected, because the vector of integers is computed once before the loop is executed and does not depend on subsequent values of <code>n</code>.
+                </para>
+            </solution>
+        </exercise>
+        <exercise id="ExThree">
+            <problem id="ProbThree">
+                <title>Nested Loops II</title>
+                <para id="ParaThree">
+                    What value will the following program print?
+<code display="block" id="idp5211568">count = 0;
+for d = 1:7
+    for h = 1:24
+        for m = 1:60
+            for s = 1:60
+                count = count + 1;
+            end
+        end
+    end
+end
+count
+</code>
+                    What is a simpler way to achieve the same results?
+                </para>
+            </problem>
+            <solution id="idm8065136">
+                <para id="SolThree">
+                    The  <code>d</code> loop will be executed seven times. In each iteration of the <code>d</code> loop, the <code>h</code> loop will be executed 24 times. In each iteration of the <code>h</code> loop, the <code>m</code> loop will be executed 60 times. In each iteration of the <code>m</code> loop, the <code>s</code> loop will be executed 60 times. So the variable <code>count</code> will be incremented
+                    <m:math>
+                        <m:apply>
+                            <m:eq/>
+                            <m:apply>
+                                <m:times/>
+                                <m:cn> 7 </m:cn>
+                                <m:cn> 24 </m:cn>
+                                <m:cn> 60 </m:cn>
+                                <m:cn> 60 </m:cn>
+                            </m:apply>
+                            <m:cn> 604800 </m:cn>
+                        </m:apply>
+                    </m:math>
+                    times.
+                </para>
+                <para id="SolThreea">
+                    A simpler way to achieve the same results is the command
+                    <code display="block" id="idp954736">
+                        7*24*60*60
+                    </code>
+                </para>
+            </solution>
+        </exercise>
+    </section>
+</content>
+
+</document>

@@ -1,0 +1,118 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml" xmlns:bib="http://bibtexml.sf.net/">
+  <title>Programming with M-files: Analyzing Railgun Data Using For Loops</title>
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>1ed3eff8-b5d8-40c9-8b00-4071063d2ed9</md:uuid>
+</metadata>
+<content>
+    <note id="idm605664">
+        This example requires an understanding of the relationships between acceleration and velocity of an object moving in a straight line.  A clear discussion of this relationship can be found in <link document="m13769">Acceleration</link>; the Wikipedia article <link url="http://en.wikipedia.org/wiki/Motion_graphs_and_derivatives"><cite><cite-title>Motion Graphs and Derivatives</cite-title></cite></link> also has an explanation of this relationship, as well as a discussion of average and instantaneous velocity and acceleration and the role derivatives play.  Also, in  this example, we will compute approximate integrals using the trapezoidal rule; The Wikipedia article <link url="http://en.wikipedia.org/wiki/Trapezoidal_rule"> <cite><cite-title>Trapezium rule</cite-title></cite></link> has an explanation of the trapezoidal rule.
+    </note>
+    <section id="SecGun">
+        <title>Velocity Analysis of an Experimental Rail Gun</title>
+        <para id="bob1">
+            A railgun is a device that uses electrical energy to accelerate a projectile; information about railguns can be found at the Wikipedia article <link url="http://en.wikipedia.org/wiki/Railgun"><cite><cite-title>Railgun</cite-title></cite></link>.  The paper <cite target-id="Zilenski99"><cite-title>Effect of Railgun Electrodynamics on Projectile Launch Dynamics</cite-title></cite> shows the current profile of a railgun launch.  The acelleration <m:math><m:ci>a</m:ci></m:math> of the projectile (in units of
+            <m:math>
+                <m:apply>
+                    <m:divide/>
+                    <m:ci>m</m:ci>
+                    <m:apply>
+                        <m:power/>
+                        <m:ci>s</m:ci>
+                        <m:cn>2</m:cn>
+                    </m:apply>
+                </m:apply>
+            </m:math>)
+            is a function of the current <m:math><m:ci>c</m:ci></m:math> through the projectile (in units of kAmp).  This function is given by the equation
+            <equation id="eq1">
+                <m:math>
+                    <m:apply>
+                        <m:eq/>
+                        <m:ci>a</m:ci>
+                        <m:apply>
+                            <m:times/>
+                            <m:cn>0.0036</m:cn>
+                            <m:apply>
+                                <m:power/>
+                                <m:ci>c</m:ci>
+                                <m:cn>2</m:cn>
+                            </m:apply>
+                            <m:apply>
+                                <m:ci type="function">sgn</m:ci>
+                                <m:ci>c</m:ci>
+                            </m:apply>
+                        </m:apply>
+                    </m:apply>
+                </m:math>
+            </equation>
+            where 
+            <m:math>
+                <m:apply>
+                    <m:ci type="function">sgn</m:ci>
+                    <m:ci>c</m:ci>
+                </m:apply>
+            </m:math>
+             is 1 if 
+             <m:math>
+                <m:apply>
+                    <m:gt/>
+                    <m:ci>c</m:ci>
+                    <m:cn>0</m:cn>
+                </m:apply>
+             </m:math>
+             and -1 if 
+             <m:math>
+                <m:apply>
+                    <m:lt/>
+                    <m:ci>c</m:ci>
+                    <m:cn>0</m:cn>
+                </m:apply>
+             </m:math>. 
+        </para>        
+        <exercise id="E1">
+            <problem id="P1">
+                <title>Get the data</title>
+                <para id="Pa1">
+                    Download the current data set in the file <link resource="Current.txt">Current.txt</link> onto your computer  (right click on <link resource="Current.txt">this link</link>).  The file is formatted as two columns: the first column is time in mili-seconds, and the second column is current in kA.
+                </para>
+            </problem>
+        </exercise>
+        <para id="S1">
+            The following sequence of commands will load the data, create a vector <code>t</code> of time values, create a vector <code>c</code> of current values, and plot the current as a function of time.
+<code display="block" id="idp4554560">load Current.txt -ascii
+t = Current(:,1);
+c = Current(:,2);
+plot(t,c)
+xlabel('time (msec)')
+ylabel('current (kA)')
+</code>
+            The plot should be similar to that in <link target-id="FigCurPlot"/>.
+            <figure id="FigCurPlot">
+                <media id="idp4471840" alt=""><image src="../../media/CurPlot.png" mime-type="image/png"/><image for="pdf" src="../../media/CurPlot.eps" mime-type="application/postscript"/></media>
+                <caption>
+                    Plot of railgun current versus time.
+                </caption>
+            </figure>
+        </para>
+        <exercise id="ex1">
+            <problem id="idp1973680">
+                <para id="bob99">
+                    Compute the projectile velocity as a function of time. Note that velocity is the integral of acceleration.
+                </para>
+            </problem>
+        </exercise>
+    </section>
+</content>
+<bib:file>
+    <bib:entry id="Zilenski99">
+        <bib:article>
+            <bib:author>Alexander E. Zielinski; Paul Weinacht</bib:author>
+            <bib:title>Effect of Railgun Electrodynamics on Projectile Launch Dynamics</bib:title>
+            <bib:journal>IEEE Transactions on Magnetics</bib:journal>
+            <bib:year>1999</bib:year>
+            <bib:volume>35</bib:volume>
+            <bib:number>1</bib:number>
+            <bib:pages>118-123</bib:pages>
+        </bib:article>
+    </bib:entry>
+</bib:file>
+
+</document>

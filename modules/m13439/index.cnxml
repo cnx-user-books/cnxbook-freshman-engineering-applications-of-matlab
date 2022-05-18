@@ -1,0 +1,200 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml">
+
+
+
+<title>Basic Mathematical Operations</title>
+<metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>f1decdce-3a19-4e87-af6a-27ad1b1f31bc</md:uuid>
+</metadata>
+<content>
+    <section id="id31833631">
+        <title>Operations and Expressions</title>
+        <para id="id31833641">
+            An  m-file environment has all of the standard arithmetic operations (addition, subtraction, etc.) and functions (sine, cosine, logarithm, etc.). The <link target-id="commonMatS">table</link> lists the most commonly used operations; in this table, <code>x</code> and <code>y</code> are <emphasis>scalars</emphasis>.  (A scalar is a single value, as opposed to a vector or matrix which consists of many values.) 
+            <table frame="all" id="commonMatS" summary="">
+                <title>Some Common Scalar Mathematical Operations</title>
+                <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                    <colspec colnum="2" colname="c2"/>
+                    <colspec colnum="4" colname="c4"/>
+                    <thead valign="top">
+                        <row>
+                            <entry align="center">Operation</entry>
+                            <entry align="center">m-file</entry>
+                        </row>
+                    </thead>
+                    <tbody valign="top">
+                        <row>
+                            <entry align="center"><m:math><m:apply><m:minus/><m:ci>x</m:ci><m:ci>y</m:ci></m:apply></m:math></entry>
+                            <entry align="center"><code>x-y</code></entry>
+                        </row>
+                        <row>
+                            <entry align="center"><m:math><m:apply><m:plus/><m:ci>x</m:ci><m:ci>y</m:ci></m:apply></m:math></entry>
+                            <entry align="center"><code>x+y</code></entry>
+                        </row>
+                        <row>
+                            <entry align="center"><m:math><m:apply><m:times/><m:ci>x</m:ci><m:ci>y</m:ci></m:apply></m:math></entry>
+                            <entry align="center"><code>x*y</code></entry>
+                        </row>
+                        <row>
+                            <entry align="center"><m:math><m:apply><m:divide/><m:ci>x</m:ci><m:ci>y</m:ci></m:apply></m:math></entry>
+                            <entry align="center"><code>x/y</code></entry>
+                        </row>
+                        <row>
+                            <entry align="center"><m:math><m:apply><m:power/><m:ci>x</m:ci><m:ci>y</m:ci></m:apply></m:math></entry>
+                            <entry align="center"><code>x^y</code></entry>
+                        </row>
+                        <row> 
+                            <entry align="center"><m:math><m:apply><m:power/><m:ci>e</m:ci><m:ci>x</m:ci></m:apply></m:math></entry>
+                            <entry align="center"><code>exp(x)</code></entry>
+                        </row>
+                        <row>
+                            <entry align="center"><m:math><m:apply><m:ci type="function">log10</m:ci><m:ci>x</m:ci></m:apply></m:math></entry>
+                            <entry align="center"><code>log10(x)</code></entry>
+                        </row>
+                        <row>
+                            <entry align="center"><m:math><m:apply><m:ci type="function">ln</m:ci><m:ci>x</m:ci></m:apply></m:math></entry>
+                            <entry align="center"><code>log(x)</code></entry>
+                        </row>
+                        <row>
+                            <entry align="center"><m:math><m:apply><m:ci type="function">log2</m:ci><m:ci>x</m:ci></m:apply></m:math></entry>
+                            <entry align="center"><code>log2(x)</code></entry>
+                        </row>
+                        <row>
+                            <entry align="center"><m:math><m:apply><m:cos/><m:ci>x</m:ci></m:apply></m:math></entry>
+                            <entry align="center"><code>cos(x)</code></entry>
+                        </row>
+                        <row>
+                            <entry align="center"><m:math><m:apply><m:sin/><m:ci>x</m:ci></m:apply></m:math></entry>
+                            <entry align="center"><code>sin(x)</code></entry>
+                        </row>
+                        <row>
+                            <entry align="center"><m:math><m:apply><m:root/><m:ci>x</m:ci></m:apply></m:math></entry>
+                            <entry align="center"><code>sqrt(x)</code></entry>
+                        </row>
+                    </tbody>
+                </tgroup>
+            </table>    
+        </para>   
+        <para id="id113">
+            <emphasis>Expressions</emphasis> are formed from numbers,  variables,  and these operations. The operations have different precedences. The <code>^</code> operation has the highest precedence; <code>^</code> operations are evaluated before any other operations.  Multiplication and division have the next highest precedence, and addition and subtraction have the lowest precedence. Precedence is altered by parentheses; expressions within parentheses are evaluated before expressions outside parentheses.
+        </para>
+        <example id="example119">
+            <para id="example119p">
+                The <link target-id="example119t">Table</link>  below shows several mathematical formulas, the corresponding  expressions,  and the values that are computed for the expressions.
+                <table frame="all" id="example119t" summary="">
+                    <title>Example Expressions</title>
+                    <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colnum="2" colname="c2"/>
+                        <colspec colnum="4" colname="c4"/>
+                        <colspec colnum="6" colname="c6"/>
+                        <thead valign="top">
+                            <row>
+                                <entry align="center">formula</entry>
+                                <entry align="center">MATLAB Expression</entry>
+                                <entry align="center">Computed Value</entry>
+                            </row>
+                        </thead>
+                        <tbody valign="top">
+                            <row>
+                                <entry align="center">
+                                    <m:math>
+                                        <m:apply>
+                                            <m:plus/>
+                                            <m:apply><m:power/><m:cn>5</m:cn><m:cn>2</m:cn></m:apply>
+                                            <m:apply><m:power/><m:cn>4</m:cn><m:cn>2</m:cn></m:apply>
+                                        </m:apply>
+                                    </m:math>
+                                </entry>
+                                <entry align="center"><code>5^2+4^2</code></entry>
+                                <entry align="center"><code>41</code></entry>
+                            </row>
+                            <row>
+                                <entry align="center">
+                                    <m:math>
+                                        <m:apply>
+                                            <m:power/>
+                                            <m:apply><m:plus/><m:cn>5</m:cn><m:cn>4</m:cn></m:apply>
+                                            <m:cn>2</m:cn>
+                                        </m:apply>
+                                    </m:math>
+                                </entry>
+                                <entry align="center"><code>(5+4)^2</code></entry>
+                                <entry align="center"><code>81</code></entry>
+                            </row>
+                            <row>
+                                <entry align="center">
+                                    <m:math>
+                                        <m:apply>
+                                            <m:divide/>
+                                            <m:apply><m:plus/><m:cn>2</m:cn><m:cn>3</m:cn></m:apply>
+                                            <m:apply><m:minus/><m:cn>4</m:cn><m:cn>5</m:cn></m:apply>
+                                        </m:apply>
+                                    </m:math>
+                                </entry>
+                                <entry align="center"><code>(2 + 3)/(4 - 5)</code></entry>
+                                <entry align="center"><code>-5</code></entry>
+                            </row>
+                            <row>
+                                <entry align="center">
+                                    <m:math>
+                                        <m:apply>
+                                            <m:ci type="function">log10</m:ci>
+                                            <m:cn>100</m:cn>
+                                        </m:apply>
+                                    </m:math>
+                                </entry>
+                                <entry align="center"><code>log10(100)</code></entry>
+                                <entry align="center"><code>2</code></entry>
+                            </row>
+                            <row>
+                                <entry align="center">
+                                    <m:math>
+                                        <m:apply>
+                                            <m:ci type="function">ln</m:ci>
+                                            <m:apply> 
+                                                <m:times/>
+                                                <m:cn>4</m:cn>
+                                                <m:apply><m:plus/><m:cn>2</m:cn><m:cn>3</m:cn></m:apply>
+                                            </m:apply>
+                                        </m:apply>
+                                    </m:math>
+                                </entry>
+                                <entry align="center"><code>log(4*(2+3))</code></entry>
+                                <entry align="center"><code>2.9957</code></entry>
+                            </row>
+                        </tbody>
+                    </tgroup>
+                </table>
+            </para>
+        </example>
+
+    </section>
+
+    <section id="otherDet">
+        <title>Useful Tricks</title>
+        <para id="p1other">
+            These tricks are occasionally useful, especially when you begin programming with m-files.
+            <list list-type="bulleted" id="id11814914">
+                <item>A <emphasis>semicolon</emphasis> added at the end of a line suppresses the output.</item>
+                <item>Often it is useful to <emphasis>split input</emphasis> over multiple lines. To split a statement across multiple lines, enter three periods <code>...</code> at the end of the line to indicate it continues on the next line.</item>
+            </list>
+        </para>
+        <example id="exSplit">
+            <para id="exSplitPara">Splitting  the expression
+                <m:math>
+                    <m:apply>
+                        <m:divide/>
+                        <m:apply><m:plus/><m:cn>2</m:cn><m:cn>3</m:cn></m:apply>
+                        <m:apply><m:minus/><m:cn>4</m:cn><m:cn>5</m:cn></m:apply>
+                    </m:apply>
+                </m:math>
+                over multiple lines.
+<code display="block" id="idm10063040">
+    (2+3)...
+    /(4-5)
+</code>
+            </para>
+        </example>
+
+    </section>
+</content>
+</document>

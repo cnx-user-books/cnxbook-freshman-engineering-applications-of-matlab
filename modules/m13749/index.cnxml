@@ -1,0 +1,18 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:md="http://cnx.rice.edu/mdml">
+  <title>Introduction to the M-file Connexions Modules</title>
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>3679a60d-1488-4847-9786-add4ed7ca7b5</md:uuid>
+</metadata>
+  <content>
+    <para id="delete_me">
+    MATLAB has emerged as a widely used computational tool in many fields of engineering.   MATLAB consists of a programming language used in an interactive computing environment that supports the development of programs to solve complex problems.
+The MATLAB language has become a defacto standard that is also used by several other computational packages, including LabVIEW MathScript and Octave.  Generically, we refer to these packages as <emphasis>m-file  environments</emphasis> because the program files typically are identified by an extension of "m".
+    </para>
+    <para id="bleh2">
+    The Connexions modules in <link document="col10325">this course</link> are intended to introduce freshman engineering students to problem solving using an m-file environment.  Most of the information in these modules applies to any m-file environment (MATLAB, LabVIEW MathScript, Octave, etc.). There are some differences between environments, and occasionally some material will be specific to a given environment.  This material  is offset from the surrounding text and labeled with the appropriate environment. For example:
+        <note type="MATLAB" id="idp8418992"><label>MATLAB</label>Matlab is a commercial product of <link url="http://www.mathworks.com/">The MathWorks</link>. </note>
+        <note type="LabVIEW MathScript" id="idp1499904"><label>LabVIEW MathScript</label>LabVIEW MathScript is a commercial product of <link url="http://www.ni.com/">National Instruments</link>. </note>
+        <note type="Octave" id="idp7856544"><label>Octave</label>Octave is an open source environment that is available without charge.  Information about Octave is available at the <link url="http://www.octave.org/">Octave home page</link>. </note>
+    </para>   
+  </content>
+  
+</document>

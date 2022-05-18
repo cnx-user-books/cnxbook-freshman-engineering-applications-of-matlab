@@ -1,0 +1,271 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml">
+  <title>Programming with M-Files: A Personal Finance Example Using While Loops</title>
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>52277c00-9b3f-4e90-9d98-5fec1b2aebbe</md:uuid>
+</metadata>
+  <content>
+    <section id="S1">
+    <title>A Personal Finance Example</title>
+
+    <para id="xyzzy1">
+      A student decides to finance their college education using a credit card. They charge one semester's tuition and then make the minimum monthly payment until the credit card balance is zero. How many months will it take to pay off the semester's tuition? How much will the student have spent to pay off the tuition?
+    </para>
+    <para id="xyzzy2">
+      We can solve this problem using an m-file script. We define the following variables:
+      <list id="vars" list-type="bulleted">
+  <item>
+    <m:math>
+    <m:ci>
+      <m:msub>
+        <m:mi>b</m:mi>
+        <m:mi>n</m:mi>
+      </m:msub>
+    </m:ci>
+  </m:math> - Balance at month <m:math><m:ci>n</m:ci></m:math>.
+  </item>
+  <item>
+      <m:math>
+    <m:ci>
+      <m:msub>
+        <m:mi>p</m:mi>
+        <m:mi>n</m:mi>
+      </m:msub>
+    </m:ci>
+  </m:math> - Payment in month  <m:math><m:ci>n</m:ci></m:math>.
+  </item>
+  <item>
+      <m:math>
+    <m:ci>
+      <m:msub>
+        <m:mi>f</m:mi>
+        <m:mi>n</m:mi>
+      </m:msub>
+    </m:ci>
+  </m:math> - Finance charge (interest) in month  <m:math><m:ci>n</m:ci></m:math>.</item>
+</list>
+    </para>
+    <para id="xyzzy3">
+      The <emphasis>finance charge</emphasis> <m:math>
+    <m:ci>
+      <m:msub>
+        <m:mi>f</m:mi>
+        <m:mi>n</m:mi>
+      </m:msub>
+    </m:ci>
+  </m:math>is the interest that is paid on the balance each month. The finance charge is computed using the monthly interest rate <m:math> <m:ci>r</m:ci></m:math>:
+<equation id="eq2">
+  <m:math>
+    <m:apply>
+      <m:eq/>
+      <m:ci>
+	<m:msub>
+	  <m:mi>f</m:mi>
+	  <m:mi>n</m:mi>
+	</m:msub>
+      </m:ci>
+      <m:apply>
+	<m:times/>
+	<m:ci>r</m:ci>
+	<m:ci>
+	  <m:msub>
+	    <m:mi>b</m:mi>
+	    <m:mi>n</m:mi>
+	  </m:msub>
+	</m:ci>
+      </m:apply>
+    </m:apply>
+  </m:math>
+</equation>
+Credit card interest rates are typically given as an annual percentage rate (APR). To convert the APR to a monthly interest rate, use the following formula:
+<equation id="eq3">
+  <m:math>
+    <m:apply>
+      <m:eq/>
+      <m:ci>r</m:ci>
+      <m:apply>
+	<m:minus/>
+	<m:apply>
+	  <m:power/>
+	  <m:apply>
+	    <m:plus/>
+	    <m:cn>1</m:cn>
+	    <m:apply>
+	      <m:divide/>
+	      <m:ci>APR</m:ci>
+	      <m:cn>100</m:cn>
+	    </m:apply>
+	  </m:apply>
+	  <m:apply>
+	    <m:divide/>
+	    <m:cn>1</m:cn>
+	    <m:cn>12</m:cn>
+	  </m:apply>
+	</m:apply>
+	<m:cn>1</m:cn>
+      </m:apply>
+    </m:apply>
+  </m:math>
+</equation>
+More information on how to compute monthly rates can be found <link url="http://en.wikipedia.org/wiki/Credit_card_interest">here</link>.
+    </para>
+    <para id="xyzzy4">
+      Credit cards usually have a <emphasis>minimum monthly payment</emphasis>. The minimum monthly payment is usually a fixed percentage of the balance; the percentage is required by federal regulations to be at least 1% higher than the monthly interest rate. If this minimum payment would be below a given threshold (usually $10 to $20), the minimum payment is instead set to the threshold. For a threshold of $10, the relationship between the balance and the minimum payment can be shown in an equation as follows:
+<equation id="eq4">
+  <m:math>
+    <m:apply>
+      <m:eq/>
+      <m:ci>
+	<m:msub>
+	  <m:mi>p</m:mi>
+	  <m:mi>n</m:mi>
+	</m:msub>
+      </m:ci>
+      <m:apply>
+	<m:ci type="fn">max</m:ci>
+      <m:apply>
+	<m:times/>
+	<m:apply>
+	  <m:plus/>
+	  <m:ci>r</m:ci>
+	  <m:cn>0.01</m:cn>
+	</m:apply>
+	<m:ci>
+	  <m:msub>
+	    <m:mi>b</m:mi>
+	    <m:mi>n</m:mi>
+	  </m:msub>
+	</m:ci>
+      </m:apply>
+      <m:cn>10</m:cn>
+      </m:apply>
+    </m:apply>
+  </m:math>
+</equation>
+    </para>
+    
+    <para id="xyzzy99">
+To compute the balance for one month (month <m:math><m:apply><m:plus/> <m:ci>n</m:ci><m:cn>1</m:cn></m:apply></m:math>) from the balance for the previous month (month <m:math> <m:ci>n</m:ci></m:math>), we compute the finance charge on the balance in the previous month and add it to the previous balance, then subtract the payment for the previous month:
+<equation id="eq1">
+  <m:math>
+    <m:apply>
+      <m:eq/>
+      <m:ci>
+	<m:msub>
+	  <m:mi>b</m:mi>
+<m:mrow>
+   <m:mi>n</m:mi>
+   <m:mo>+</m:mo>
+   <m:mn>1</m:mn>
+</m:mrow>
+	</m:msub>
+      </m:ci>
+      <m:apply>
+	<m:plus/>
+	<m:ci>
+	  <m:msub>
+	    <m:mi>b</m:mi>
+	    <m:mi>n</m:mi>
+	  </m:msub>
+	</m:ci>
+	<m:apply>
+	  <m:minus/>
+	  <m:ci>
+	    <m:msub>
+	      <m:mi>f</m:mi>
+	      <m:mi>n</m:mi>
+	    </m:msub>
+	  </m:ci>
+	  <m:ci>
+	    <m:msub>
+	      <m:mi>p</m:mi>
+	      <m:mi>n</m:mi>
+	    </m:msub>
+	  </m:ci>
+	</m:apply>
+      </m:apply>
+    </m:apply>
+  </m:math>
+</equation>
+    </para>
+    <para id="xyzzy100">
+In the following exercises, we will develop the program to compute the number of months necessary to pay the debt. We will assume that the card APR is 14.9% (the <link url="http://money.cnn.com/pf/informa/index.html">average rate on a student credit card</link> in mid February 2006) and that the initial balance charged to the card is $2203 (the <link url="http://www.asu.edu/sbs/FallUndergradEastWest.htm">in-state tuition at Arizona State University at the Polytechnic Campus  for Spring 2006 semester</link>).
+    </para>
+    <exercise id="E1">
+      <problem id="P1">
+        <para id="P1a">
+          Write code to compute the monthly interest rate <m:math> <m:ci>r</m:ci></m:math> from the APR using <link target-id="eq3"/>.
+        </para>
+      </problem>
+      <solution id="idp7370944">
+        <para id="S11"><code display="block" id="idp10237888">
+APR = 14.9;
+r = (1+APR/100)^(1/12)-1;
+</code></para>
+      </solution>
+    </exercise>
+
+    <exercise id="E2">
+      <problem id="P2">
+        <para id="P2a">
+          Write code to compute the minimum monthly payment <m:math>
+    <m:ci>
+      <m:msub>
+        <m:mi>p</m:mi>
+        <m:mi>n</m:mi>
+      </m:msub>
+    </m:ci>
+  </m:math> using <link target-id="eq4"/>.
+        </para>
+      </problem>
+      <solution id="idp9815664">
+        <para id="S2"><code display="block" id="idp7349792">bn = 2203;
+pn = max((r+0.01)*bn,10);
+</code></para>
+      </solution>
+    </exercise>
+
+    <exercise id="E3">
+      <problem id="P3">
+        <para id="P3a">
+          Write code to compute the  balance at month <m:math><m:apply><m:plus/> <m:ci>n</m:ci><m:cn>1</m:cn></m:apply></m:math> in terms of the balance at month <m:math> <m:ci>n</m:ci></m:math>  using <link target-id="eq1"/>.
+        </para>
+      </problem>
+      <solution id="idp1444960">
+        <para id="S3"><code display="block" id="idp10444528">
+fn = r*bn;
+bn = bn + fn - pn;
+</code></para>
+      </solution>
+    </exercise>
+
+    <exercise id="E4">
+      <problem id="P4">
+        <para id="P4a">
+	  Place the code developed for <link target-id="E3"/> into a while loop to determine how many months will be required to pay off the card.
+	</para>
+      </problem>
+      <solution id="idp7995280">
+	<para id="S4">
+	  This space intentionally left blank.
+	</para>
+      </solution>
+    </exercise>
+
+    <exercise id="E5">
+      <problem id="P5">
+	<para id="P5a">
+	  Modify your code from  <link target-id="E4"/> to plot the monthly balance, monthly payment, and total cost-to-date for each month until the card is paid off.
+	</para>
+      </problem>
+      <solution id="idp708768">
+	<para id="S5">
+	  This space intentionally left blank.
+	</para>
+      </solution>
+    </exercise>
+
+
+  </section>
+
+</content>
+  
+</document>

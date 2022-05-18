@@ -1,0 +1,285 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:md="http://cnx.rice.edu/mdml">
+  <title>Programming with M-Files: A Rocket Trajectory Analysis Using For Loops</title>
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>0f0c532b-0827-47aa-adbc-f3e41f3f3c5b</md:uuid>
+</metadata>
+  <content>
+
+<note id="idp6534976">
+This example requires an understanding of the relationships between position, velocity, and acceleration of an object moving in a straight line. The Wikipedia article
+<link url="http://en.wikipedia.org/wiki/Motion_graphs_and_derivatives">
+ <cite><cite-title>Motion Graphs and Derivatives</cite-title></cite></link>
+has a clear explanation of these relationships, as well as a discussion of average and instantaneous velocity and acceleration and the role derivatives play in these relationships.  Also, in  this example, we will approximate derivatives with forward, backward, and central differences; <link url="http://dmpeli.math.mcmaster.ca/Matlab/Math1J03/LectureNotes/Lecture4_1.htm">
+<cite><cite-title> Lecture 4.1 </cite-title></cite> by Dr. Dmitry Pelinovsky at McMaster University </link> contains useful information about this approximation.  We will also approximate integrals using the trapezoidal rule; The Wikipedia article
+<link url="http://en.wikipedia.org/wiki/Trapezoidal_rule">
+ <cite><cite-title>Trapezium rule</cite-title></cite></link>
+has an explanation of the trapezoidal rule.
+</note>
+
+<section id="SecRocket">
+	  <title>Trajectory Analysis of an Experimental Homebuilt Rocket</title>
+
+
+<para id="ParaRocket1">
+On his web page
+<link url="http://www.nakka-rocketry.net/ff-2.html">
+<cite><cite-title>Richard Nakka's Experimental Rocketry Web Site: Launch Report - Frostfire Two  Rocket</cite-title></cite></link>, 
+Richard Nakka
+provides a very detailed narrative of the test firing of his  Frostfire Two homebuilt rocket  and subsequent data analysis. (<link url="http://www.nakka-rocketry.net/">His site</link> provides many detailed accounts of tests of rockets and rocket motors.  Some rocket launches were not as successful as the Frostfire Two launch; his site provides very interesting post-flight analysis of all launches.)
+</para>
+</section>
+<section id="Sec2">
+	  <title>Computation of Velocity and Acceleration from Altitude Data</title>
+
+<para id="xyzzy">
+In this  section, we will use m-files to analyze the altitude data extracted from the plot "Altitude and Acceleration Data from R-DAS" on Richard Nakk's web page.  This data is in the file <link resource="Altitude.txt">Altitude.txt</link>.
+We will use this data to estimate velocity and acceleration of the Frostfire Two rocket during its flight.
+</para>
+
+<exercise id="E1">
+<problem id="P1">
+<title>Get the data</title>
+<para id="Pa1">
+Download the altitude data set in the file <link resource="Altitude.txt">Altitude.txt</link> onto your computer  (right click on <link resource="Altitude.txt">this link</link>).  The file is formatted as two columns: the first column is time in seconds, and the second column is altitude in feet. Load the data and plot the altitude as a function of time.
+</para>
+</problem>
+</exercise>
+<para id="S1">
+The following sequence of commands will load the data, create a vector <code>t</code> of time values, create a vector <code>s</code> of altitude values, and plot the altitude as a function of time.
+<code display="block" id="idp12535312">
+load Altitude.txt -ascii
+t = Altitude(:,1);
+s = Altitude(:,2);
+plot(t,s)
+</code>
+The plot should be similar to that in <link target-id="FigAltPlot"/>.
+<figure id="FigAltPlot">
+  <media id="idm1008864" alt=""><image src="../../media/AltPlot.png" mime-type="image/png"/><image for="pdf" src="../../media/AltPlot.eps" mime-type="application/postscript"/></media>
+  <caption>
+    Plot of altitude versus time.
+  </caption>
+</figure>
+
+</para>
+
+<exercise id="E2">
+<problem id="P2">
+<title>Forward Differences</title>
+<para id="Pa2">
+Write a script that uses a for loop to compute velocity and acceleration from the altitude data using forward differences. Your script should also plot the computed velocity and acceleration as function of time.
+</para>
+</problem>
+<solution id="idp9851968">
+<para id="S2">This solution is by Scott Jenne; it computes and plots the velocity:
+<code display="block" id="idp11786992">load Altitude.txt -ascii
+t=Altitude(:,1);
+s=Altitude(:,2);
+for n=1:180;
+    v=((s(n+1))-s(n))/((t(n+1))-t(n))
+    hold on
+    plot(t(n),v,'o')
+end
+</code>
+The plot produced by this code is shown in <link target-id="FigP2Plot"/>.
+<figure id="FigP2Plot">
+  <media id="idp8815648" alt=""><image src="../../media/P2Plot.png" mime-type="image/png"/><image for="pdf" src="../../media/P2Plot.eps" mime-type="application/postscript"/></media>
+  <caption>
+    Plot of velocity computed with the forward difference method versus time.
+  </caption>
+</figure>
+
+</para>
+</solution>
+</exercise>
+
+<exercise id="E3">
+<problem id="P3">
+<title>Backward Differences</title>
+<para id="Pa3">
+Modify your script from <link target-id="P2"/> to compute velocity and acceleration using backward differences.  Remember to save  your modified script with a different name than your script from <link target-id="P2"/>.
+</para>
+</problem>
+<solution id="idp7425968">
+<para id="S3">This solution by Bryson Hinton:
+<code display="block" id="idp12379888">
+load altitude.txt -ascii
+t=altitude(:,1);
+s=altitude(:,2); 
+hold on
+for x=2:181
+    v(x)=(s(x)-s(x-1))/(t(x)-t(x-1));
+    plot(t(x),v(x),'b.')
+end
+</code>
+The plot produced by this code is shown in <link target-id="FigP3Plot"/>.
+<figure id="FigP3Plot">
+  <media id="idp8834400" alt=""><image src="../../media/P3Plot.png" mime-type="image/png"/><image for="pdf" src="../../media/P3Plot.eps" mime-type="application/postscript"/></media>
+  <caption>
+    Plot of velocity computed with the backward difference method versus time.
+  </caption>
+</figure>
+
+
+</para>
+</solution>
+</exercise>
+
+<exercise id="E4">
+<problem id="P4">
+<title>Central Differences</title>
+<para id="Pa4">
+Modify your script from <link target-id="P2"/> to compute velocity and acceleration using central differences.  Remember to save  your modified script with a different name than your script from <link target-id="P2"/> and <link target-id="P3"/>.
+</para>
+</problem>
+<solution id="idp8988048">
+<para id="S4">This code computes the velocity using the central difference formula.
+<code display="block" id="idm399392">
+load Altitude.txt -ascii
+t=Altitude(:,1);
+s=Altitude(:,2); 
+for n=2:180
+    v(n-1)=(s(n+1)-s(n-1))/(t(n+1)-t(n-1));
+end
+plot(t(2:180),v)
+</code>
+The plot produced by this code is shown in <link target-id="FigP4Plot"/>.
+<figure id="FigP4Plot">
+  <media id="idm661568" alt=""><image src="../../media/P4Plot.png" mime-type="image/png"/><image for="pdf" src="../../media/P4Plot.eps" mime-type="application/postscript"/></media>
+  <caption>
+    Plot of velocity computed with the central difference method versus time.
+  </caption>
+</figure>
+
+</para>
+</solution>
+</exercise>
+
+<para id="Blah">
+Compare the velocity and acceleration values computed by the different approximations. What can you say about their accuracy?
+</para>
+
+<exercise id="E5">
+<problem id="P5">
+<title>Can it be done without loops?</title>
+<para id="Pa5">
+Modify your script from <link target-id="P2"/> to compute velocity and acceleration without using a for loop.
+</para>
+</problem>
+<solution id="idp13018624">
+<para id="S5">
+This code uses the <code>diff</code> function to compute the difference between adjacient elements of <code>t</code> and <code>s</code>, and the <code>./</code> function to divide each element of the altitude differences with the corresponding element of the time differences:
+<code display="block" id="idp12422528">
+load Altitude.txt -ascii
+t=Altitude(:,1);
+s=Altitude(:,2); 
+v=diff(s)./diff(t);
+plot(t(1:180),v)
+</code>
+The plot produced by this code is shown in <link target-id="FigP5Plot"/>.
+<figure id="FigP5Plot">
+  <media id="idp8878400" alt=""><image src="../../media/P5Plot.png" mime-type="image/png"/><image for="pdf" src="../../media/P5Plot.eps" mime-type="application/postscript"/></media>
+  <caption>
+    Plot of velocity computed with the forward difference method versus time.  The values in this plot are the same as in <link target-id="FigP2Plot"/>.
+  </caption>
+</figure>
+
+</para>
+</solution>
+</exercise>
+</section>
+<section id="Sec3">
+	  <title>Computation of Velocity and Altitude from Acceleration  Data</title>
+<para id="xx1">
+In this  section, we will use m-files to analyze the acceleration data extracted from the plot "Altitude and Acceleration Data from R-DAS" on Richard Nakk's web page.  Download the acceleration data set in the file <link resource="Acceleration.txt">Acceleration.txt</link> onto your computer  (right click on <link resource="Acceleration.txt">this link</link>). The first column is time in seconds, and the second column is acceleration in g's. The following commands load the data and plot the acceleration as a function of time.
+<code display="block" id="idp6732864">
+load Acceleration.txt -ascii
+t = Acceleration(:,1);
+a = Acceleration(:,2);
+plot(t,a)
+</code>
+The plot should be similar to that in <link target-id="FigAccPlot"/>.
+<figure id="FigAccPlot">
+  <media id="idp7975168" alt=""><image src="../../media/AccPlot.png" mime-type="image/png"/><image for="pdf" src="../../media/AccPlot.eps" mime-type="application/postscript"/></media>
+  <caption>
+    Plot of acceleration versus time.
+  </caption>
+</figure>
+</para>
+
+<exercise id="E2a">
+<problem id="P2a">
+<title>Trapezoidal Rule</title>
+<para id="Pa2a">
+Write a script that uses a for loop to compute velocity and altitude from the acceleration data using the trapezoidal rule. Your script should also plot the computed velocity and altitude as function of time.
+</para>
+</problem>
+<solution id="idp13105648">
+<para id="S2a">
+This solution is by Jonathan Selby:
+<code display="block" id="idp12479632">
+load Acceleration.txt -ascii
+t=Acceleration (:,1);
+a=Acceleration (:,2);
+v(1)=0;
+for n=1:181
+    v(n+1)=(t(n+1)-t(n))*(a(n+1)+a(n))/2+v(n);
+end
+plot(t,v)
+</code>
+This code creates the plot in <link target-id="FigVPlot"/>.
+<figure id="FigVPlot">
+  <media id="idp6890528" alt=""><image src="../../media/VPlot.png" mime-type="image/png"/><image for="pdf" src="../../media/VPlot.eps" mime-type="application/postscript"/></media>
+  <caption>
+    Plot of  velocity versus time. The velocity is computed by numerically integrating the  measured acceleration.
+  </caption>
+</figure>
+This code can be easily extended to also compute altitude  while it is computing velocity:
+<code display="block" id="idp9046624">
+load Acceleration.txt -ascii
+t=Acceleration (:,1);
+a=Acceleration (:,2);
+v(1)=0; % Initial velocity
+s(1)=0; % Initial altitude
+for n=1:181
+    v(n+1)=(t(n+1)-t(n))*(a(n+1)+a(n))/2+v(n);
+    s(n+1)=(t(n+1)-t(n))*(v(n+1)+v(n))/2+s(n);
+end
+plot(t,s)
+</code>
+This code creates the plot in <link target-id="FigSPlot"/>.
+<figure id="FigSPlot">
+  <media id="idp13125792" alt=""><image src="../../media/SPlot.png" mime-type="image/png"/><image for="pdf" src="../../media/SPlot.eps" mime-type="application/postscript"/></media>
+  <caption>
+    Plot of  altitude versus time.
+  </caption>
+</figure>
+</para>
+</solution>
+</exercise>
+
+<exercise id="E5a">
+<problem id="P5a">
+<title>Can it be done without loops?</title>
+<para id="Pa5a">
+Modify your script from <link target-id="P2a"/> to compute velocity and altitude without using a for loop.
+</para>
+</problem>
+<solution id="idp6790656">
+<para id="S5a">This solution by Nicholas Gruman uses the <code>cumtrapz</code> function to compute velocity  with the trapezoidal rule:
+<code display="block" id="idm858240">
+load Acceleration.txt -ascii
+t=Acceleration(:,1);
+A=Acceleration(:,2);
+v=cumtrapz(t,A);
+</code>
+Altitude could also be computed by adding the following line to the end of the previous code:
+<code display="block" id="idp8347648">
+s=cumtrapz(t,v);
+</code>
+</para>
+</solution>
+</exercise>
+
+</section>
+  </content>
+  
+</document>

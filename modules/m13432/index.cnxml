@@ -1,0 +1,259 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:md="http://cnx.rice.edu/mdml">
+  <title>Programming with M-Files: If-Statement Drill Exercises</title>
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>7342b754-4962-4d4f-9ae2-2dafa7de1b1b</md:uuid>
+</metadata>
+<content>
+  <section id="SecReview">
+    <title>Some If Statement Exercises</title>
+
+    <exercise id="ExAa">
+      <problem id="ProbAa">
+        <para id="ParaAa">
+          What will the following code print?
+          <code display="block" id="idm1235168">
+a = 10;
+if a ~= 0
+    disp('a is not equal to 0')
+end
+</code>
+        </para>
+      </problem>
+      <solution id="idm2583024">
+        <para id="SolAa">'
+          a is not equal to 0'
+        </para>
+      </solution>
+    </exercise>
+
+    <exercise id="Ex2">
+      <problem id="Prob2">
+        <para id="Par2">
+          What will the following code print?
+          <code display="block" id="idm333792">
+a = 10;
+if a &gt; 0
+    disp('a is positive')
+else
+    disp('a is not positive')
+end
+</code>
+        </para>
+      </problem>
+      <solution id="idm1898240">
+        <para id="Sol2a">'
+          a is positive'
+        </para>
+      </solution>
+    </exercise>
+
+    <exercise id="Ex3">
+      <problem id="Prob3">
+        <para id="Par3">
+          What will the following code print?
+          <code display="block" id="idp240016">
+a = 5;
+b = 3;
+c = 2;
+if a &lt; b*c
+    disp('Hello world')
+else
+    disp('Goodbye world')
+end
+</code>
+        </para>
+      </problem>
+      <solution id="idm957472">
+        <para id="Sol3a"><code>
+          b*c</code> gives a value of 6, and 5 &lt; 6, so this code will print 'Hello world'.
+        </para>
+      </solution>
+    </exercise>
+
+    <exercise id="Ex4">
+      <problem id="Prob4">
+        <para id="Par4">
+          Suppose the code in <link target-id="Prob2"/> is modified by adding parentheses around <code>a &gt; 0</code>. What will it print?
+          <code display="block" id="idm175168">
+a = 10;
+if (a &gt; 0)
+    disp('a is positive')
+else
+    disp('a is not positive')
+end
+</code>
+        </para>
+      </problem>
+      <solution id="idm8640576">
+        <para id="Sol4a">
+          The parentheses around the relational expression <code>a &gt; 0</code> will not change its validity, so this code will print 'a is positive'.
+        </para>
+      </solution>
+    </exercise>
+
+    <exercise id="Ex5">
+      <problem id="Prob5">
+        <para id="Par5">
+          Suppose the code in <link target-id="Prob3"/> is modified by adding the parentheses shown below. What will it print?
+          <code display="block" id="idm9485568">
+a = 5;
+b = 3;
+c = 2;
+if (a &lt; b)*c
+    disp('Hello world')
+else
+    disp('Goodbye world')
+end
+</code>
+        </para>
+      </problem>
+      <solution id="idm1332048">
+        <para id="Sol5a">
+          The parentheses in this expression change its meaning completely. First, <code>a &lt; b</code> is evaluated, and since it is false for the given values of <code>a</code> and <code>b</code>, it evaluates to zero. The zero is than multiplied by <code>c</code>, giving a value of zero which is interpreted as false.  So this code prints 'Goodbye world'.
+        </para>
+      </solution>
+    </exercise>
+
+    <exercise id="Ex6">
+      <problem id="Prob6">
+        <para id="Par6">
+          What will the following code print?
+          <code display="block" id="idp212400">
+p1 = 3.14;
+p2 = 3.14159;
+if p1 == p2
+    disp('p1 and p2 are equal')
+else
+    disp('p1 and p2 are not equal')
+end
+</code>
+        </para>
+      </problem>
+      <solution id="idp1375344">
+        <para id="Sol6a">'
+          p1 and p2 are not equal'
+        </para>
+      </solution>
+    </exercise>
+
+    <exercise id="Ex7">
+      <problem id="Prob7">
+        <para id="Par7">
+          What will the following  code print?
+          <code display="block" id="idp5048144">
+a = 5;
+b = 10;
+if a = b
+    disp('a and b are equal')
+else
+    disp('a and b are not equal')
+end
+</code>
+        </para>
+      </problem>
+      <solution id="idp1054832">
+        <para id="Sol7a">
+          This code will generate an error message, since <code>a = b</code> assigns the value of <code>b</code> to <code>a</code>. To check if <code>a</code> and <code>b</code> are equal, use <code>a == b</code>.
+        </para>
+      </solution>
+    </exercise>
+
+    <exercise id="Ex8">
+      <problem id="Prob8">
+        <para id="Par8">
+          For what values of the variable <code>a</code> will the following MATLAB code print 'Hello world'?
+          <code display="block" id="idp942320">
+if ~ a == 0
+    disp('Hello world')
+else
+    disp('Goodbye world')
+end
+</code>
+        </para>
+      </problem>
+      <solution id="idm2378672">
+        <para id="Sol8a">
+          Any value that is not zero.
+        </para>
+      </solution>
+    </exercise>
+
+    <exercise id="Ex9">
+      <problem id="Prob9">
+        <para id="Par9">
+          For what values of the variable <code>a</code> will the following code print 'Hello world'?
+          <code display="block" id="idm7652032">
+if a &gt;= 0 &amp;&amp; a &lt; 7
+    disp('Hello world')
+else
+    disp('Goodbye world')
+end
+</code>
+        </para>
+      </problem>
+      <solution id="idm9264304">
+        <para id="Sol9a">
+          Any value greater than or equal to 0 and less than 7.
+        </para>
+      </solution>
+    </exercise>
+
+    <exercise id="Ex10">
+      <problem id="Prob10">
+        <para id="Par10">
+          For what values of the variable <code>a</code> will the following code print 'Hello world'?
+          <code display="block" id="idm1868192">
+if a &lt; 3 || a &gt; 10
+    disp('Hello world')
+else
+    disp('Goodbye world')
+end
+</code>
+        </para>
+      </problem>
+      <solution id="idm8661184">
+        <para id="Sol10a">
+          Any value less than 3 or greater than 10.
+        </para>
+      </solution>
+    </exercise>
+
+    <exercise id="Ex11">
+      <problem id="Prob11">
+        <para id="Par11">
+          For what values of the variable <code>a</code> will the following code print 'Hello world'?
+          <code display="block" id="idp5176080">
+if a &lt; 7 || a &gt;= 3
+    disp('Hello world')
+else
+    disp('Goodbye world')
+end
+</code>
+        </para>
+      </problem>
+      <solution id="idp5057760">
+        <para id="Sol11a">
+           Every value of <code>a</code> will print 'Hello world'.
+        </para>
+      </solution>
+    </exercise>
+
+    <exercise id="Ex12">
+      <problem id="Prob12">
+        <para id="Par12">
+          Write an <code>if</code> statement that will print <code>'a is very close to zero'</code> if the value of the variable <code>a</code> is between -0.01 and 0.01.
+        </para>
+      </problem>
+      <solution id="idp864576">
+        <para id="Sol12a"><code display="block" id="idp3866368">
+        
+if a &gt;= -0.01 &amp;&amp; a &lt;= 0.01
+    disp('a is very close to zero')
+end</code></para>
+      </solution>
+    </exercise>
+
+
+  </section> 
+</content>
+
+</document>

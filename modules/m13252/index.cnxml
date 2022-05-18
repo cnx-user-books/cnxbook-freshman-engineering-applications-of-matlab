@@ -1,0 +1,416 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:md="http://cnx.rice.edu/mdml">
+<title>Graphical representation of data in MATLAB</title>
+<metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>f0669a2e-44c8-4fe0-a477-d57bdd08c1c1</md:uuid>
+</metadata>
+<content>
+<section id="id32217122">
+<title>Graphical representation of data in MATLAB</title>
+<para id="id29278843">MATLAB provides a great variety of functions
+and techniques for graphical display of data. The flexibility and
+ease of use of MATLAB's plotting tools is one of its key strengths.
+In MATLAB graphs are shown in a figure window. Several figure
+windows can be displayed simultaneously, but only one is active.
+All graphing commands are applied to the active figure. The command
+
+<code>figure(n)</code>will activate figure number 
+<code>n</code> or create a new figure indexed by 
+<code>n</code>.</para>
+</section>
+<section id="id29338025">
+<title>Tools for plotting</title>
+<para id="id31177638">In this section we present some of the most
+commonly used functions for plotting in MATLAB.</para>
+<list list-type="bulleted" id="id32114483">
+<item>
+<code>plot</code>- The plot and stem functions can take a large
+number of arguments, see help plot and help stem. For example the
+line type and color can easily be changed. 
+<code>plot(y)</code> plots the values in vector 
+<code>y</code>versus their index. 
+<code>plot(x,y)</code> plots the values in vector 
+<code>y</code>versus 
+<code>x</code>. The 
+<code>plot</code> function produces a piecewise linear graph between
+its data values. With enough data points it looks
+continuous.</item>
+<item>
+<code>stem</code>- Using 
+<code>stem(y)</code>the data sequence 
+<code>y</code>is plotted as stems from the x-axis terminated with
+circles for the data values. 
+<code>stem</code> is the natural way of plotting sequences. 
+<code>stem(x,y)</code> plots the data sequence 
+<code>y</code> at the values specified in 
+<code>x</code>.</item>
+<item>
+<code>xlabel('string')</code>- Labels the x-axis with 
+<code>string</code>.</item>
+<item>
+<code>ylabel('string')</code>- Labels the y-axis with 
+<code>string</code>.</item>
+<item>
+<code>title('string')</code>- Gives the plot the title 
+<code>string</code>.</item>
+</list>
+<para id="id5034258">
+To illustrate this consider the following example.</para>
+
+<example id="ex1">
+	<para id="id3027396">In this example we plot the function y = x2
+		for x 2 [-2; 2].</para>
+	<para id="id32220922">
+		<code>x = -2:0.2:2;</code>
+	</para>
+	<para id="id32220962">
+	<code/>
+	</para>
+	<para id="id32220988">
+		<code>y = x.^2;</code>
+	</para>
+	<para id="id32221015">
+		<code/>
+	</para>
+	<para id="id32221028">
+		<code>figure(1);</code>
+	</para>
+	<para id="id32354290">
+		<code/>
+	</para>
+	<para id="id32221075">
+		<code>plot(x,y);</code>
+	</para>
+	<para id="id32221043">
+		<code/>
+	</para>
+	<para id="id28507335">
+		<code>xlabel('x');</code>
+	</para>
+	<para id="id29277298">
+		<code/>
+	</para>
+	<para id="id32044469">
+		<code>ylabel('y=x^2');</code>
+	</para>
+	<para id="id32128597">
+		<code/>
+	</para>
+	<para id="id28756322">
+		<code>title('Simple plot');</code>
+	</para>
+	<para id="id29301333">
+		<code/>
+	</para>
+	<para id="id30456630">
+		<code>figure(2);</code>
+	</para>
+	<para id="id28989919">
+		<code/>
+	</para>
+	<para id="id31570812">
+	<code>stem(x,y);</code>
+		</para>
+	<para id="id32221276">
+		<code/>
+	</para>
+	<para id="id32221111">
+		<code>xlabel('x');</code>
+	</para>
+	<para id="id32352963">
+		<code/>
+	</para>
+	<para id="id32221290">
+		<code>ylabel('y=x^2');</code>
+	</para>
+	<para id="id32220953">
+		<code/>
+	</para>
+	<para id="id32220940">
+		<code>title('Simple stem plot');</code>
+	</para>
+	<para id="id1331">This code produces the following two figures.</para>
+	<figure id="fig1">
+	    
+	    <media id="idm8338240" alt=""><image src="../../media/plotteEksempel1_1.png" mime-type="image/png"/></media>
+	    
+	  </figure>
+	<figure id="fig2">
+	    
+	    <media id="idm6823232" alt=""><image src="../../media/plotteEksempel1_2.png" mime-type="image/png"/></media>
+	    
+	  </figure>
+</example>	
+<para id="id32352998">Some more commands that can be helpful when
+working with plots:</para>
+<list list-type="bulleted" id="id32352987">
+<item>hold on / off - Normally hold is off. This means that the
+plot command replaces the current plot with the new one. To add a
+new plot to an existing graph use 
+<code>hold on</code>. If you want to overwrite the current plot
+again, use 
+<code>hold off</code>.</item>
+
+<item>
+<code>legend('plot1','plot2',...,'plot N')</code>- The 
+<code>legend</code> command provides an easy way to identify
+individual plots when there are more than one per figure. A legend
+box will be added with strings matched to the plots.</item>
+
+<item>
+<code>axis([xmin xmax ymin ymax])</code>- Use the 
+<code>axis</code> command to set the axis as you wish. Use 
+<code>axis on/off</code> to toggle the axis on and off
+respectively.</item>
+
+<item>
+<code>subplot(m,n,p)</code> -Divides the figure window into 
+<code>m</code> rows, 
+<code>n</code> columns and selects the 
+<code>p</code>p'th subplot as the current plot, e.g 
+<code>subplot(2,1,1)</code> divides the figure in two and selects
+the upper part. 
+<code>subplot(2,1,2)</code> selects the lower part.</item>
+
+<item>
+<code>grid on/off</code> - This command adds or removes a
+rectangular grid to your plot.</item>
+</list>
+
+<example id="ex2">
+	<para id="id31258675">This example illustrates 
+	<code>hold</code>, <code>legend</code> and <code>axis</code>.</para>
+
+	<para id="id32114432">
+		<code>x = -3:0.1:3; y1 = -x.^2; y2 = x.^2;</code>
+	</para>
+	<para id="id32114459">
+		<code/>
+	</para>
+	<para id="id32353706">
+		<code>figure(1);</code>
+	</para>
+<para id="id32353785">
+<code/>
+</para>
+<para id="id32353851">
+<code>plot(x,y1);</code>
+</para>
+<para id="id32353917">
+<code/>
+</para>
+<para id="id32353996">
+<code>hold on;</code>
+</para>
+<para id="id32354049">
+<code/>
+</para>
+<para id="id32220582">
+<code>plot(x,y2,'--');</code>
+</para>
+<para id="id32220525">
+<code/>
+</para>
+<para id="id32220499">
+<code>hold off;</code>
+</para>
+<para id="id32353418">
+<code/>
+</para>
+<para id="id32353391">
+<code>xlabel('x');</code>
+</para>
+<para id="id32353366">
+<code/>
+</para>
+<para id="id32353340">
+<code>ylabel('y_1=-x^2 and y_2=x^2');</code>
+</para>
+<para id="id32353315">
+<code/>
+</para>
+<para id="id32353132">
+<code>legend('y_1=-x^2','y_2=x^2');</code>
+</para>
+<para id="id32353185">
+<code/>
+</para>
+<para id="id5270696">
+<code>figure(2);</code>
+</para>
+<para id="id32220478">
+<code/>
+</para>
+<para id="id32218346">
+<code>plot(x,y1);</code>
+</para>
+<para id="id32353730">
+<code/>
+</para>
+<para id="id28603737">
+<code>hold on;</code>
+</para>
+<para id="id32354484">
+<code/>
+</para>
+<para id="id32354432">
+<code>plot(x,y2,'--');</code>
+</para>
+<para id="id16320317">
+<code/>
+</para>
+<para id="id31805353">
+<code>hold off;</code>
+</para>
+<para id="id32059917">
+<code/>
+</para>
+<para id="id31850072">
+<code>xlabel('x');</code>
+</para>
+<para id="id29225532">
+<code/>
+</para>
+<para id="id29225538">
+<code>ylabel('y_1=-x^2 and y_2=x^2');</code>
+</para>
+<para id="id32071319">
+<code/>
+</para>
+<para id="id32220879">
+<code>legend('y_1=-x^2','y_2=x^2');</code>
+</para>
+<para id="id32220886">
+<code/>
+</para>
+<para id="id32114510">
+<code>axis([-1 1 -10 10]);</code>
+</para>
+<para id="id32184005">The result is shown below.</para>
+<figure orient="horizontal" id="horfig">
+	    <subfigure id="subfig1">
+	      <media id="idp541392" alt=""><image src="../../media/plotteEksempel2_1.png" mime-type="image/png"/></media>
+	    </subfigure>
+	    <subfigure id="subfig2">
+	      <media id="idm7736336" alt=""><image src="../../media/plotteEksempel2_2.png" mime-type="image/png"/></media>
+	    </subfigure>
+	  </figure>	  
+</example>
+
+<example id="ex3">
+<para id="id32221055">In this example we illustrate
+subplot and grid.</para>
+<para id="id32223062">
+<code>x = -3:0.2:3; y1 = -x.^2; y2 = x.^2;</code>
+</para>
+<para id="id32223069">
+<code/>
+</para>
+<para id="id32223075">
+<code/>
+</para>
+<para id="id32220190">
+<code>subplot(2,1,1);</code>
+</para>
+<para id="id32220198">
+<code/>
+</para>
+<para id="id32220204">
+<code>plot(x,y1);</code>
+</para>
+<para id="id32220211">
+<code/>
+</para>
+<para id="id32223141">
+<code>xlabel('x'); ylabel('y_1=-x^2');</code>
+</para>
+<para id="id32223148">
+<code/>
+</para>
+<para id="id32223154">
+<code>grid on;</code>
+</para>
+<para id="id32223161">
+<code/>
+</para>
+<para id="id32223168">
+<code>subplot(2,1,2);</code>
+</para>
+<para id="id32353500">
+<code/>
+</para>
+<para id="id32353506">
+<code>plot(x,y2);</code>
+</para>
+<para id="id32353513">
+<code/>
+</para>
+<para id="id32353519">
+<code>xlabel('x');</code>
+</para>
+<para id="id32353526">
+<code/>
+</para>
+<para id="id32221201">
+<code>ylabel('y_2=x^2');</code>
+</para>
+<para id="id32221211">Now, the result is shown below.</para>
+	<figure id="figEx3">
+	    
+	    <media id="idm923648" alt=""><image src="../../media/plotteEksempel3.png" mime-type="image/png"/></media>
+	    
+	  </figure>
+</example>
+</section>
+<section id="id32221222">
+<title>Printing and exporting graphics</title>
+<para id="id32221229">After you have created your figures you may
+want to print them or export them to graphic files. In the "File"
+menu use "Print" to print the figure or "Save As" to save your
+figure to one of the many available graphics formats. Using these
+options should be sufficient in most cases, but there are also a
+large number of adjustments available by using "Export setup",
+"Page Setup" and "Print Setup".</para>
+<para id="id32220353">To streamline the graphics exportation, take
+a look at exportfig package at Mathworks.com, URL: 
+<link url="http://www.mathworks.com/matlabcentral/fileexchange/loadFile.do?objectId=727">
+http://www.mathworks.com/matlabcentral/fileexchange/loadFile.do?objectId=727</link>.</para>
+</section>
+
+
+<section id="id32221223">
+<title>3D Graphics</title>
+<para id="id32220382">
+We end this module on graphics with a sneak
+peek into 3D plots. The new functions here are 
+<code>meshgrid</code> and 
+<code>mesh</code>. In the example below we see that 
+<code>meshgrid</code>produces 
+<code>x</code>and 
+<code>y</code>vectors suitable for 3D plotting and that 
+<code>mesh(x,y,z)</code> plots 
+<code>z</code> as a function of both 
+<code>x</code> and 
+<code>y</code>.</para>
+<example id="ex4">
+	<para id="id32219744">Example: Creating our first 3D plot.</para>
+	<para id="id32219752"><code>[x,y] = meshgrid(-3:.1:3);</code></para>
+	<para id="id32219759"><code/></para>
+	<para id="id32219765"><code>z = x.^2+y.^2;</code></para>
+	<para id="id32219772"><code/></para>
+	<para id="id32219778"><code>mesh(x,y,z);</code></para>
+	<para id="id32219785"><code/></para>
+	<para id="id32219792"><code>xlabel('x');</code></para>
+	<para id="id32282232"><code/></para>
+	<para id="id32282238"><code>ylabel('y');</code></para>
+	<para id="id32282245"><code/></para>
+	<para id="id32282252"><code>zlabel('z=x^2+y^2');</code></para>
+	<para id="id32282262">This code gives us the following 3D plot.</para>
+		<figure id="fig3D">
+	    
+	    <media id="idm6303840" alt=""><image src="../../media/plotteEksempel3D.png" mime-type="image/png"/></media>
+	    
+	  </figure>
+
+</example>
+</section>
+</content>
+</document>

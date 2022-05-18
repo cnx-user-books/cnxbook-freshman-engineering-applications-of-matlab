@@ -1,0 +1,88 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:md="http://cnx.rice.edu/mdml">
+  <title>Programming with M-Files: Logical Expressions</title>
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>742de5f0-3fd9-47d7-8134-6c678afe8e77</md:uuid>
+</metadata>
+  <content>
+<section id="SecLE">
+	  <title>Logical Expressions</title>
+<para id="ParaLE">Logical expressions are used in <link document="m13356">if statements</link>, switch case statements, and <link document="m13456">while loops</link> to change the sequence of execution of commands in response to variable values. A logical expression is one that evaluates to either true or false. For example, <code>v &gt; 0</code> is a logical expression that will be true if the variable <code>v</code> is greater than zero and false otherwise.
+</para>
+<note id="idm7577840">
+In m-file scripts, logical values (true and false) are actually represented by numerical values. The numerical value of zero represents false, and any nonzero numerical value represents true.
+</note>
+<para id="element-199">
+Logical expression are typically formed using the following relational operators:
+<table frame="all" id="SideLen" summary="">
+  <title>Relational Operators</title>
+  <tgroup cols="2" colsep="1" rowsep="1">
+    <thead>
+      <row>
+        <entry>Symbol</entry>
+        <entry> Relation</entry>
+      </row>
+    </thead>
+    <tbody>
+      <row>
+        <entry align="center"><code>&lt;</code></entry>
+        <entry align="center">Less than</entry>
+      </row>
+      <row>
+        <entry align="center"><code>&lt;=</code></entry>
+        <entry align="center">Less than  or equal to</entry>
+      </row> 
+      <row>
+        <entry align="center"><code>&gt;</code></entry>
+        <entry align="center">Greater than</entry>
+      </row>
+      <row>
+        <entry align="center"><code>&gt;=</code></entry>
+        <entry align="center">Greater than or equal to</entry>
+      </row>
+      <row>
+        <entry align="center"><code>==</code></entry>
+        <entry align="center">Equal to</entry>
+      </row>
+      <row>
+        <entry align="center"><code>~=</code></entry>
+        <entry align="center">Not equal to</entry>
+      </row>
+    </tbody>
+  </tgroup>
+</table>
+<note id="idp2726416">
+<code>==</code>  is not the same as <code>=</code>; they are treated very differently in m-file scripting environments. <code>==</code> compares two values, while <code>=</code> assigns a value to a variable.
+</note>
+</para>
+<para id="element-101">
+Complex logical expressions can be created by combining simpler logical expressions using the following logical operators:
+<table frame="all" id="XX" summary="">
+  <title>Logical Operators</title>
+  <tgroup cols="2" colsep="1" rowsep="1">
+    <thead>
+      <row>
+        <entry>Symbol</entry>
+        <entry>Relation</entry>
+      </row>
+    </thead>
+    <tbody>
+      <row>
+        <entry align="center"><code>~</code></entry>
+        <entry align="center">Not</entry>
+      </row>
+      <row>
+        <entry align="center"><code>&amp;&amp;</code></entry>
+        <entry align="center">And</entry>
+      </row> 
+      <row>
+        <entry align="center"><code>||</code></entry>
+        <entry align="center">Or</entry>
+      </row>
+    </tbody>
+  </tgroup>
+</table>
+</para>
+
+</section>
+  </content>
+  
+</document>

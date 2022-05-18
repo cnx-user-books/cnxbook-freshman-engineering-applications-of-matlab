@@ -1,0 +1,73 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:md="http://cnx.rice.edu/mdml">
+  <title>Programming with M-files: For Loops</title>
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>ad95a900-cc93-4788-a6bd-f3ececb36e87</md:uuid>
+</metadata>
+<content>
+    <section id="SecForLoop">
+        <title>The For Loop</title>
+        <para id="ParaForLoopIntro">
+            The <emphasis>for loop</emphasis> is one way to repeat a series of computations using different values. The for loop has the following syntax:
+<code display="block" id="idm8130496">for d = array
+    % Command 1
+    % Command 2
+    % and so on
+end
+</code>
+            In the for loop, <code>array</code> can be any vector or array of values.   The for loop works like this: <code>d</code> is set to the first value in <code>array</code>, and the sequence of commands (<code>Command 1</code>, <code>Command 2</code>, <code>and so on</code>) in the body of the for loop is executed with this value of <code>d</code>. Then <code>d</code> is set to the second value in  <code>array</code>, and the sequence of commands in the body of the for loop is executed with this value of <code>d</code>. This process continues through all of the values in <code>array</code>.  So a for loop that performs computations for values of <code>d</code> from 1.0 to 2.0 is:
+<code display="block" id="idm7456528">for d = 1.0:0.05:2.0
+    % Command 1
+    % Command 2
+    % and so on
+end
+</code>
+            (Recall that <code>1.0:0.05:2.0</code> creates a vector of values from 1.0 to 2.0.)
+        </para>
+        <para id="element-194">
+            Note that in all of the examples in this module, the commands inside the for loop are indented relative to the <code>for</code> and <code>end</code> statements. This is not required, but is common practice and makes the code much more readable.
+        </para>
+        <para id="bob1">
+            The flow of control through a for loop is represented by the flow chart in <link target-id="fig1"/>.  This flow chart graphically shows how the sequence of commands in the for loop is executed once for each value.  The flow of control through the for loop is also represented by the pseudo code in <link target-id="fig2"/>; note that the pseudo code looks very similar to the actual m-file code.
+        </para>
+        <figure id="fig1">
+            <media id="idp3474512" alt=""><image src="../../media/ForFlowchart.png" mime-type="image/png"/><image for="pdf" src="../../media/ForFlowchart.eps" mime-type="application/postscript"/></media>
+            <caption>
+                A flow chart containing a for loop.
+            </caption>
+        </figure>
+        <code id="fig2" display="block" class="listing">for each element of the vector
+    Do Command 1
+    Do Command 2
+    and so on
+<caption>
+                Pseudo code for a for loop.
+            </caption></code>
+        <para id="ParaForLoopIntro2">
+            A useful type of for loop is one that steps a counter variable from 1 to some upper value:
+<code display="block" id="idp945472">for j = 1:10
+    % Commands
+end
+</code>
+            For example, this type of loop can be used to compute a sequence of values that are stored in the elements of a vector. An example of this type of loop is
+<code display="block" id="idm8172928">% Store the results of this loop computation in the vector v
+for j = 1:10
+    % Commands
+    % More Commands to compute a complicated result
+    v(j) = result;
+end
+</code>
+        </para>
+        <para id="element-199">
+            Using a for loop to access and manipulate elements of a vector (as in this example) may be the most natural approach, particularly when one has previous experience with other programming languages such as C or Java. However, many problems can be solved without for loops by using the built-in vector capabilities. Using these capabilities almost always improves computational speed and reduces the size of the program. Some would also claim that it is more elegant.
+        </para>
+        <para id="element-310">
+            For loops can also contain other for loops. For example, the following code performs the  commands for each combination of <code>d</code> and <code>c</code>:
+<code display="block" id="idp391392">for d=1:0.05:2
+    for c=5:0.1:6
+        % Commands
+    end
+end
+</code>
+        </para>
+    </section>
+</content>
+</document>

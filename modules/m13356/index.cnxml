@@ -1,0 +1,69 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:md="http://cnx.rice.edu/mdml">
+  <title>Programming with M-Files: If Statements</title>
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>143791b8-b625-497c-97da-fa27a0e3171d</md:uuid>
+</metadata>
+  <content>
+<section id="SecIf">
+	  <title>The If Statement</title>
+<para id="ParaIf">The <emphasis>if statement</emphasis> is one way to make  the sequence of computations executed by in an m-file script  depend on variable values. The if statement has  several different forms. The simplest form is
+<code display="block" id="idp406976">
+if expression
+    % Commands to execute if expression is true
+end
+</code>
+where <code>expression</code> is a logical expression that is either true or false. (Information about logical expressions is available in <link document="m13357">Programming with M-Files: Logical Expressions</link>.)  For example, the following if statement will print "v is negative"  if the variable <code>v</code> is in fact negative:
+<code display="block" id="idp2945008">
+if v &lt; 0
+    disp('v is negative')
+end
+</code>
+</para>
+<para id="element-199">
+A more complicated form of the if statement is
+<code display="block" id="idm6845664">
+if expression
+    % Commands to execute if expression is true
+else
+    % Commands to execute if expression is false
+end
+</code>
+For example, the following if statement will print "v is negative"  if the variable <code>v</code> is negative and "v is not negative"  if <code>v</code> is not negative:
+<code display="block" id="idp3665680">
+if v &lt; 0
+    disp('v is negative')
+else
+    disp('v is not negative')
+end
+</code>
+</para>
+<para id="element-101">
+The most general form of the if statement is
+<code display="block" id="idp476896">
+if expression1
+    % Commands to execute if expression1 is true
+elseif expression2
+    % Commands to execute if expression2 is true
+elseif expression3
+    % Commands to execute if expression3 is true
+    ...
+else
+    % Commands to execute if all expressions are false
+end
+</code>
+The following if statement  is an example of this most general statement:
+<code display="block" id="idp1575728">
+if v &lt; 0
+    disp('v is negative')
+elseif v &gt; 0
+    disp('v is positive')
+else
+    disp('v is zero')
+end
+</code>
+</para>
+
+<para id="element-194">Note that in all of the examples in this module, the commands inside the if statement are indented relative to the <code>if</code>, <code>else</code>, <code>elseif</code>, and <code>end</code> statements. This is not required, but is common practice and makes the code much more readable.</para>
+</section>
+  </content>
+  
+</document>

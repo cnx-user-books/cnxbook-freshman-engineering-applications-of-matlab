@@ -1,0 +1,87 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:md="http://cnx.rice.edu/mdml">
+  <title>Visual Tools for Problem Solving with M-Files</title>
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>86098732-aa28-4479-8e26-67e819b6c243</md:uuid>
+</metadata>
+<content>
+    <para id="element-943">
+        Using an abstract visual representation while developing a program structure is often a useful technique. Several different visual representations have been developed; one of the most comprehensive is <link url="http://www.uml.org/">UML</link>. Two of the simplest are introduced in this module: flow charts and pseudo code. In both flow charts and pseudo code, elements of the problem solution are described using natural language statements that are visually arranged to show the structure of the program.
+    </para>
+    <para id="element-674">
+        A flow chart represents elements of the solution to a problem as statements enclosed in boxes; the sequence in which use elements are performed is identified by arrows connecting the boxes. <link target-id="element-704"/> shows an example flow chart.
+    </para>
+    <para id="element-985">
+        Pseudo code represents the elements of the solution to a problem as a sequence of statements. The statements are formatted to show the logical structure of the solution. <link target-id="element-341"/> shows an example of pseudo code.
+    </para>
+    <para id="element-806">
+        The following example demonstrates the use of flow charts and pseudo code to develop the structure of a program that solves an engineering problem.
+    </para>
+    <example id="element-356">
+        <para id="element-604">
+            The ACME Manufacturing Company is planning to manufacture <link url="http://en.wiktionary.org/wiki/widget">widgets</link>. There are two different manufacturing processes: one cost $10,000 to implement and can manufacture up to 1000 widgets, while the other cost $100,000 to implement and can manufacture up to one million widgets. In addition to the manufacturing cost, there is a fixed cost of $1 per widget (for packing and shipping each widget to the customer). Consider the problem of calculating the cost per unit to manufacture and ship a given number of widgets.
+        </para>
+        <para id="element-177">
+            One way to solve the problem is to complete the following steps:
+            <list id="element-718" list-type="bulleted">
+                <item>Get the number of widgets to be produced.</item>
+                <item>Determine the total manufacturing costs.</item>
+                <item>Determine the total fixed costs.</item>
+                <item>Determine the total cost.</item>
+                <item>Compute the cost per unit.</item>
+            </list>
+        </para>
+        <para id="element-766">
+            <link target-id="element-704"/> shows a flow chart that represents these steps. <link target-id="element-341"/> shows the pseudo code that represents these steps.
+        </para>
+        <figure id="element-704">
+            <title>First Flow Chart</title>
+            <media id="idm481616" alt=""><image src="../../media/FirstFlowchart.png" mime-type="image/png"/><image for="pdf" src="../../media/FirstFlowchart.eps" mime-type="application/postscript"/></media>
+            <caption>
+                A flow chart for the widget production problem.
+            </caption>
+        </figure>
+        <code id="element-341" display="block" class="listing"><title>First Pseudo Code</title>Get the number of widgets to be produced.
+Determine the manufacturing costs.
+Determine the total fixed costs.
+Determine the total cost.
+Compute the cost per unit.
+<caption>
+                Pseudo code for the widget production problem.
+            </caption></code>
+        <para id="element-832">
+            Having developed an initial solution, we can refine those elements whose implementation may not yet be fully defined. In this example, the manufacturing cost depend on the number of widgets to be made; if this number is less than or equal to 1000, the cost is $10,000, while if the number is greater than 1000, the cost is $100,000. We can represent this using the flow chart blocks in <link target-id="element-704a"/>. The diamond is a conditional; the branch of the flow chart that is actually executed depends on whether the conditional is true or false.
+        </para>
+        <figure id="element-704a">
+            <title>Flow Chart for Manufacturing Costs</title>
+            <media id="idp1870896" alt=""><image src="../../media/MCFlowchart.png" mime-type="image/png"/><image for="pdf" src="../../media/MCFlowchart.eps" mime-type="application/postscript"/></media>
+            <caption>
+                A flow chart for the manufacturing costs.
+            </caption>
+        </figure>
+        <para id="element-334">
+            Putting this conditional into the complete flow chart gives the flow chart in <link target-id="element-704b"/>. The conditional is incorporated in the the pseudo code to give the pseudo code in <link target-id="element-341a"/>.
+        </para>
+        <figure id="element-704b">
+            <title>Complete Flow Chart</title>
+            <media id="idp2044208" alt=""><image src="../../media/FinalFlowchart.png" mime-type="image/png"/><image for="pdf" src="../../media/FinalFlowchart.eps" mime-type="application/postscript"/></media>
+            <caption>
+                The complete flow chart for the problem.
+            </caption>
+        </figure>
+        <code id="element-341a" display="block" class="listing"><title>Complete Pseudo Code</title>Get the number of widgets to be produced.
+if number of widgets &gt; 1000
+    manufacturing costs are $100,000
+else
+    manufacturing costs are $10,000
+Determine the total fixed costs.
+Determine the total cost.
+Compute the cost per unit.
+<caption>
+                Pseudo code for the widget production problem.
+            </caption></code>
+    </example>
+    <para id="blah">
+        There are advantages and disadvantages for both flow charts and pseudo code. Advantages of using a flow chart include that it provides a strong visual representation of the program and that it is straightforward for novice programmers to use. The primary disadvantage of using a flow chart is that it is possible to create a flow chart that can only be implemented by <link url="http://en.wikipedia.org/wiki/Spaghetti_code">"spaghetti code"</link>. Spaghetti code is considered extremely bad form for many reasons; in particular, it is hard to understand, debug and modify. The primary advantage of pseudo code is that its structure is clearly related to the available control structures in modern computer languages. Pseudo code has several disadvantages: it is not a very strong visual representation, and it is less straightforward for novice programmers.
+    </para>   
+</content>
+  
+</document>

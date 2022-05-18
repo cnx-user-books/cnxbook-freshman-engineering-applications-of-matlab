@@ -1,0 +1,341 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:md="http://cnx.rice.edu/mdml">
+  <title>Programming with M-Files: An Engineering Cost Analysis Example Using If Statements</title>
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>d1671537-f24e-4f0e-9cbc-258ad0e5bac6</md:uuid>
+</metadata>
+<content>
+    <section id="S1">
+        <title>An Engineering Cost Analysis Example</title>
+        <para id="xyzzy1">
+            Suppose you are a design engineer for a company that manufactures consumer electronic devices and you are estimating the cost of producing a new product. The product has four components that are purchased from electronic parts suppliers and assembled in your factory. You have received cost information from your suppliers for each of the parts; as is typical in the electronics industry, the cost of a part depends on the number of parts you order from the supplier.
+        </para>
+        <para id="xyzzy2">
+            Your assembly cost for each unit include the cost of labor and your assembly plant. You have estimated that these costs are <code>C0</code>=$45.00/unit.
+        </para>
+        <para id="xyzzy3">
+            The cost of each part depends on the number of parts purchased;  we will use the variable <code>n</code> to represent the number of parts, and the variables <code>CA</code>, <code>CB</code>, <code>CC</code>, and <code>CD</code> to represent the unit cost of each type of part. These cost are given in the following tables.
+            <table frame="all" id="PartA" summary="">
+                <title>Unit cost of Part A</title>
+                <tgroup cols="2" colsep="1" rowsep="1">
+                    <thead>
+                        <row>
+                            <entry><code>n</code></entry>
+                            <entry><code>CA</code></entry>
+                        </row>
+                    </thead>
+                    <tbody>
+                        <row>
+                            <entry align="center">1-4</entry>
+                            <entry align="center">$16.00</entry>
+                        </row>
+                        <row>
+                            <entry align="center">5-24</entry>
+                            <entry align="center">$14.00</entry>
+                        </row> 
+                        <row>
+                            <entry align="center">25-99</entry>
+                            <entry align="center">$12.70</entry>
+                        </row>
+                        <row>
+                            <entry align="center">100 or more</entry>
+                            <entry align="center">$11.00</entry>
+                        </row>
+                    </tbody>
+                </tgroup>
+            </table>
+
+            <table frame="all" id="PartB" summary="">
+                <title>Unit cost of Part B</title>
+                <tgroup cols="2" colsep="1" rowsep="1">
+                    <thead>
+                        <row>
+                            <entry><code>n</code></entry>
+                            <entry><code>CB</code></entry>
+                        </row>
+                    </thead>
+                    <tbody>
+                        <row>
+                            <entry align="center">1-9</entry>
+                            <entry align="center">$24.64</entry>
+                        </row>
+                        <row>
+                            <entry align="center">10-49</entry>
+                            <entry align="center">$24.32</entry>
+                        </row> 
+                        <row>
+                            <entry align="center">50-99</entry>
+                            <entry align="center">$24.07</entry>
+                        </row>
+                        <row>
+                            <entry align="center">100 or more</entry>
+                            <entry align="center">$23.33</entry>
+                        </row>
+                    </tbody>
+                </tgroup>
+            </table>
+
+            <table frame="all" id="PartC" summary="">
+                <title>Unit cost of Part C</title>
+                <tgroup cols="2" colsep="1" rowsep="1">
+                    <thead>
+                        <row>
+                            <entry><code>n</code></entry>
+                            <entry><code>CC</code></entry>
+                        </row>
+                    </thead>
+                    <tbody>
+                        <row>
+                            <entry align="center">1-24</entry>
+                            <entry align="center">$17.98</entry>
+                        </row>
+                        <row>
+                            <entry align="center">25-49</entry>
+                            <entry align="center">$16.78</entry>
+                        </row> 
+                        <row>
+                            <entry align="center">50 or more</entry>
+                            <entry align="center">$15.78</entry>
+                        </row>
+                    </tbody>
+                </tgroup>
+            </table>
+
+            <table frame="all" id="PartD" summary="">
+                <title>Unit cost of Part D</title>
+                <tgroup cols="2" colsep="1" rowsep="1">
+                    <thead>
+                        <row>
+                            <entry><code>n</code></entry>
+                            <entry><code>CD</code></entry>
+                        </row>
+                    </thead>
+                    <tbody>
+                        <row>
+                            <entry align="center">1-9</entry>
+                            <entry align="center">$12.50</entry>
+                        </row>
+                        <row>
+                            <entry align="center">10-99</entry>
+                            <entry align="center">$10.42</entry>
+                        </row> 
+                        <row>
+                            <entry align="center">100 or more</entry>
+                            <entry align="center">$9.62</entry>
+                        </row>
+                    </tbody>
+                </tgroup>
+            </table>     
+            The unit cost is <code>Cunit = C0 + CA + CB + CC + CD</code>. To find the unit cost to build one unit, we look in the above tables with a value of <code>n</code>=1; the unit cost is
+            <quote display="block" id="idp1049920">$45.00+$16.00+$24.64+$17.98+$12.50 = $116.12</quote>
+            To find the unit cost to build 20 units, we look in the above tables with a value of <code>n</code>=20 and get
+            <quote display="block" id="idm3159392">$45.00+$14.00+$24.32+$17.98+$10.42 = $109.72</quote>      
+            As expected, the unit cost for 20 units is lower than the unit cost for one unit.
+        </para>
+        <exercise id="E1">
+            <problem id="P1">
+                <para id="P1a">
+                    Create an if statement that will assign the proper cost to the variable <code>CA</code> based on the value of the variable <code>n</code>.
+                </para>
+            </problem>
+            <solution id="idm9417008">
+                <para id="S11">
+<code display="block" id="idm87408">if n &gt;= 1 &amp;&amp; n &lt;= 4
+    CA = 16.00;
+elseif n &gt;= 5 &amp;&amp; n &lt;= 24
+    CA = 14.00;
+elseif n &gt;= 25 &amp;&amp; n &lt;= 99
+    CA = 12.70;
+else
+    CA = 11.00;
+end
+</code> 
+                </para>
+            </solution>
+        </exercise>
+
+        <exercise id="E2">
+            <problem id="P2">
+                <para id="P2a">
+                    Create a  script that will  compute the total  unit cost <code>Cunit</code>  for a given  value of the variable <code>n</code>.
+                </para>
+            </problem>
+            <solution id="idp1248768">
+                <para id="S2">This code by BrieAnne Davis:
+<code display="block" id="idm599760">if n&gt;=1 &amp;&amp; n&lt;=4; %if n=1 to 4, CA is $16.00
+    CA=16.00;
+elseif n&gt;=5 &amp;&amp; n&lt;=24; %if n=5 to 24, CA is $14.00
+    CA=14.00;
+elseif n&gt;=25 &amp;&amp; n&lt;=99; %if n=25 to 99, CA is $12.70
+    CA=12.70;
+elseif n&gt;=100; %if n=100 or more, CA is $11.00
+    CA=11.00;
+end %this ends the if statement for CA
+
+if n&gt;=1 &amp;&amp; n&lt;=9; %if n=1 to 9, CB is $24.64
+    CB=24.64;
+elseif n&gt;=10 &amp;&amp; n&lt;=49; %if n=10 to 49, CB is $24.32
+    CB=24.32;
+elseif n&gt;=50 &amp;&amp; n&lt;=99; %if n=50 to 99, CB is $24.07
+    CB=24.07;
+elseif n&gt;=100; %if n=100 or more, CB is $23.33
+    CB=23.33;
+end %this ends the if statement for CB
+
+if n&gt;=1 &amp;&amp; n&lt;=24; %if n=1 to 24, CC is $17.98
+    CC=17.98;
+elseif n&gt;=25 &amp;&amp; n&lt;=49; %if n=25 to 49, CC is $16.78
+    CC=16.78;
+elseif n&gt;=50; %if n=50 or more, CC is $15.78
+    CC=15.78;
+end %this ends the if statement for CC
+
+if n&gt;=1 &amp;&amp; n&lt;=9; %if n=1 to 9, CD is $12.50
+    CD=12.50;
+elseif n&gt;=10 &amp;&amp; n&lt;=99; %if n=10 to 99, CD is $10.42
+    CD=10.42;
+elseif n&gt;=100; %if n=100 or more, CD is $9.62
+    CD=9.62;
+end %this ends the if statement
+CO=45.00;
+Cunit=CO + CA + CB + CC + CD;
+</code>
+                    </para>
+                </solution>
+            </exercise>
+
+            <exercise id="E3">
+                <problem id="P3">
+                    <para id="P3a">
+                        Create a m-file script that will  compute and  plot the total  unit cost as a function of <code>n</code> for values of <code>n</code> from 1 to 150.
+                    </para>
+                </problem>
+                <solution id="idp4120336">
+                    <para id="S3">This code was originally written by Bryson Hinton and then modified:
+<code display="block" id="idm1139152">cunit = zeros(1,150);
+c0 = 45;
+for n=1:150
+    %compute price for part A
+    if n &gt;= 1  &amp;&amp; n &lt;= 4
+        ca=16;
+    elseif n &gt;= 5  &amp;&amp; n &lt;= 24
+        ca=14;
+    elseif n &gt;= 25  &amp;&amp; n &lt;= 99
+        ca=12.7;
+    else
+        ca=11;
+    end
+
+    %compute price for part B
+    if n &gt;= 1 &amp;&amp; n &lt;= 9
+        cb=24.64;
+    elseif n &gt;= 10 &amp;&amp; n &lt;= 49
+        cb=24.32;
+    elseif n &gt;= 50 &amp;&amp; n &lt;= 99
+        cb=24.07;
+    else
+        cb=23.33;
+    end
+
+    %compute price for part C    
+    if n &gt;= 1 &amp;&amp; n &lt;= 24
+        cc=17.98;
+    elseif n &gt;= 25 &amp;&amp; n &lt;= 49
+        cc=16.78;
+    else
+        cc=15.78;
+    end
+
+    %compute price for part D
+    if n &gt;= 1 &amp;&amp; n &lt;= 9
+        cd=12.50;
+    elseif n &gt;= 10 &amp;&amp; n &lt;= 99
+        cd=10.42;
+    else
+        cd=9.62;
+    end
+
+    %sum cost for all parts
+    cunit(n)= c0+ca+cb+cc+cd;
+end
+
+% Plot cost as a function of n
+plot(1:150,cunit);
+xlabel('n (units)');
+ylabel('cost (dollars)');
+title('Cost/unit as a function of number of units');
+</code>
+                        This code produces the plot in <link target-id="CostFig"/>.
+                        <figure id="CostFig">
+                            <media id="idm2707088" alt=""><image src="../../media/costfig.png" mime-type="image/png"/><image for="pdf" src="../../media/costfig.eps" mime-type="application/postscript"/></media>
+                            <caption>
+                                Cost as a function of number of units produced.
+                            </caption>
+                        </figure>
+                    </para>
+                </solution>
+            </exercise>
+            <exercise id="exnew">
+                <problem id="idm1322720">
+                    <para id="bob99">Suppose that you decide to fire your workers, close down your plant, and have the assembly done offshore; in this arrangement, <code>C0 = Cx + Cs</code>, where <code>Cx</code> is the cost of offshore assembly and <code>Cs</code> is the cost of shipping assembled units from the assembler to your warehouse. After some investigation, you find an offshore assembler that gives you the following assembly costs as a function of the number of units to assemble:
+                        <table frame="all" id="Assemble" summary="">
+                            <title>Unit cost of Assembly</title>
+                            <tgroup cols="2" colsep="1" rowsep="1">
+                                <thead>
+                                    <row>
+                                        <entry><code>n</code></entry>
+                                        <entry><code>Cx</code></entry>
+                                    </row>
+                                </thead>
+                                <tbody>
+                                    <row>
+                                        <entry align="center">1-29</entry>
+                                        <entry align="center">$40.00</entry>
+                                    </row>
+                                    <row>
+                                        <entry align="center">30-59</entry>
+                                        <entry align="center">$30.00</entry>
+                                    </row> 
+                                    <row>
+                                        <entry align="center">60 or more</entry>
+                                        <entry align="center">$22.00</entry>
+                                    </row>
+                                </tbody>
+                            </tgroup>
+                        </table>
+                        You also find a shipping company that will ship the units from the assembler to your warehouse and whose freight charges are the following function of the number of units shipped :
+                        <table frame="all" id="Ship" summary="">
+                            <title>Unit cost of Shipping</title>
+                            <tgroup cols="2" colsep="1" rowsep="1">
+                                <thead>
+                                    <row>
+                                        <entry><code>n</code></entry>
+                                        <entry><code>Cs</code></entry>
+                                    </row>
+                                </thead>
+                                <tbody>
+                                    <row>
+                                        <entry align="center">1-9</entry>
+                                        <entry align="center">$20.00</entry>
+                                    </row>
+                                    <row>
+                                        <entry align="center">10-24</entry>
+                                        <entry align="center">$18.00</entry>
+                                    </row> 
+                                    <row>
+                                        <entry align="center">25-74</entry>
+                                        <entry align="center">$16.00</entry>
+                                    </row>
+                                    <row>
+                                        <entry align="center">75 or more</entry>
+                                        <entry align="center">$15.00</entry>
+                                    </row>
+                                </tbody>
+                            </tgroup>
+                        </table>
+                        Update the m-file script in <link target-id="E3"/> to account for the changes in cost due to offshoring.
+                    </para>
+                </problem>
+            </exercise>
+            
+        </section>
+    </content>  
+</document>
