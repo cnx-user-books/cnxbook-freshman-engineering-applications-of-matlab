@@ -1,0 +1,500 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml" xmlns:bib="http://bibtexml.sf.net/">
+  <title>Programming in LabVIEW MathScript-A Modeling Example Using For Loops</title>
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>b5c487f9-685e-4b3d-be17-c83be3bff778</md:uuid>
+</metadata>
+  <content>
+<section id="SecProbIntro">
+	  <title>A Modeling Problem: Counting Ping Pong Balls</title>
+<para id="ParaProbIntro">
+Suppose you have a cylinder of height
+  <m:math>
+    <m:ci> h </m:ci>
+  </m:math>
+with base diameter 
+  <m:math>
+    <m:ci> b </m:ci>
+  </m:math>
+(perhaps an empty pretzel jar), and you wish to know how many ping-pong balls of diameter
+  <m:math>
+    <m:ci> d </m:ci>
+  </m:math>
+ have been placed inside the cylinder.  How could you determine this?
+<note id="idm734128">This problem, along with the strategy for computing the lower bound on the number of ping-pong balls, is adapted from <cite target-id="HTMI"><cite-title> (Starfield 1994). </cite-title></cite></note></para>
+<para id="ParaP1">A lower bound for this problem is found as follows:
+<list list-type="bulleted" id="VariableList">
+<item>
+  <m:math>
+    <m:ci>
+      <m:msub>
+        <m:ci>N</m:ci>
+        <m:ci>L</m:ci>
+      </m:msub>
+    </m:ci>
+  </m:math>
+-Lower bound on the number of balls that fit into the cylinder.
+</item>
+<item>
+  <m:math>
+    <m:ci>
+      <m:msub>
+        <m:ci>V</m:ci>
+        <m:ci>cyl</m:ci>
+      </m:msub>
+    </m:ci>
+  </m:math>
+-The volume of the cylinder.
+  <equation id="EqCylVol"><m:math>
+    <m:apply>
+      <m:eq/>
+        <m:ci>
+          <m:msub>
+            <m:ci>V</m:ci>
+            <m:ci>cyl</m:ci>
+          </m:msub>
+        </m:ci>
+      <m:apply>
+        <m:times/>
+          <m:ci>
+            h
+          </m:ci>
+          <m:ci>
+            π
+          </m:ci>
+          <m:apply>
+            <m:power/>
+              <m:apply>
+                <m:divide/>
+                  <m:ci> b </m:ci>
+                  <m:cn> 2 </m:cn>
+              </m:apply>
+              <m:cn> 2 </m:cn>
+          </m:apply>
+      </m:apply>
+    </m:apply>
+  </m:math>
+  </equation>  
+</item>
+<item>
+  <m:math>
+    <m:ci>
+      <m:msub>
+        <m:ci>V</m:ci>
+        <m:ci>cube</m:ci>
+      </m:msub>
+    </m:ci>
+  </m:math>
+-The volume of a cube that encloses a single ball.
+  <equation id="EqCubeVol"><m:math>
+    <m:apply>
+      <m:eq/>
+        <m:ci>
+          <m:msub>
+            <m:ci>V</m:ci>
+            <m:ci>cube</m:ci>
+          </m:msub>
+        </m:ci>
+      <m:apply>
+        <m:power/>
+          <m:ci>
+            d
+          </m:ci>
+          <m:cn>
+            3
+          </m:cn>
+      </m:apply>
+    </m:apply>
+  </m:math>
+  </equation>  
+
+</item></list>
+The lower bound is found by dividing the volume of the cylinder by the volume of the cube enclosing a single ball.
+<equation id="EqLowerBound"><m:math>
+  <m:apply>
+    <m:eq/>
+      <m:ci>
+        <m:msub>
+          <m:ci>N</m:ci>
+          <m:ci>L</m:ci>
+        </m:msub>
+      </m:ci>
+    <m:apply>
+      <m:divide/>
+        <m:ci>
+          <m:msub>
+            <m:ci>V</m:ci>
+            <m:ci>cyl</m:ci>
+          </m:msub>
+        </m:ci>
+        <m:ci>
+          <m:msub>
+            <m:ci>V</m:ci>
+            <m:ci>cube</m:ci>
+          </m:msub>
+        </m:ci>
+    </m:apply>
+  </m:apply>
+</m:math>
+</equation>  
+</para>
+<exercise id="ExByHand">
+<problem id="ProbByHand">
+<title>The interactive approach</title>
+<para id="ParaProbByHand">
+You are given the following values:
+<list list-type="bulleted" id="ListByHandVals">
+<item>
+  <m:math>
+    <m:apply>
+      <m:eq/>
+        <m:ci> d </m:ci>
+        <m:cn> 1.54 in </m:cn>
+    </m:apply>
+  </m:math>
+</item>
+<item>
+  <m:math>
+    <m:apply>
+      <m:eq/>
+        <m:ci> b </m:ci>
+        <m:cn> 8 in </m:cn>
+    </m:apply>
+  </m:math>
+</item>
+<item>
+  <m:math>
+    <m:apply>
+      <m:eq/>
+        <m:ci> h </m:ci>
+        <m:cn> 14 in </m:cn>
+    </m:apply>
+  </m:math>
+</item>
+</list>
+Use LABVIEW MATHSCRIPT interactively (that is, type commands at the command line prompt) to compute
+  <m:math>
+    <m:ci>
+      <m:msub>
+        <m:ci>N</m:ci>
+        <m:ci>L</m:ci>
+      </m:msub>
+    </m:ci>
+  </m:math>
+.
+</para>
+</problem>
+<solution id="idp2242080">
+<para id="SolByHand">The following shows commands typed to LABVIEW MATHSCRIPT (at the &gt;&gt; command window) and the output produced by LABVIEW MATHSCRIPT:
+<code display="block" id="idm570944">&gt;&gt;d = 1.54
+d =
+
+           1.54     
+
+
+&gt;&gt;b = 8
+b =
+
+           8     
+
+
+&gt;&gt;h = 14
+h =
+
+           14     
+
+
+&gt;&gt;vcyl = h*pi*(b/2)^2
+vcyl =
+
+           703.72     
+
+
+&gt;&gt;vcube = d^3
+vcube =
+
+           3.6523     
+
+
+&gt;&gt;nl = vcyl/vcube
+nl =
+
+           192.68     
+</code></para>
+</solution>
+</exercise>
+
+<exercise id="ExMFile">
+<problem id="ProbFMile">
+<title>Using an M-File</title>
+<para id="ParaMFile">
+Create an M-File to solve <link target-id="ProbByHand"/>.
+</para>
+</problem>
+<solution id="idm613312">
+<para id="SolMFile">We used the LABVIEW MATHSCRIPT editor (or any text editor) to create the following file named <code>PingPong.m</code>:
+<code display="block" id="idm7727216">
+% PingPong.m - computes a lower bound on the number of 
+%   ping pong balls that fit into a cylinder
+% Note that most lines end with a ";", so they don't print
+%   intermediate results
+
+d = 1.54;
+h = 14;
+b = 8;
+vcyl = h*pi*(b/2)^2;
+vcube = d^3;
+nl = vcyl/vcube
+</code>
+When run from the LABVIEW MATHSCRIPT command line, this program produces the following output:
+<code display="block" id="idm1351232">
+&gt;&gt; PingPong
+
+nl =
+
+  192.6796
+
+</code></para>
+</solution>
+</exercise> 
+
+<para id="ParaRestOfStory">
+To complicate your problem, suppose that you have not been given values for 
+<m:math> <m:ci> d </m:ci> </m:math>,
+<m:math> <m:ci> b </m:ci> </m:math>, and
+<m:math> <m:ci> h </m:ci> </m:math>. Instead you are required to estimate the number of ping pong balls for many different possible  combinations of these variables  (perhaps 50 or more combinations).  How can you automate this computation?
+</para>
+
+<para id="element-381">In LABVIEW MATHSCRIPT, one way to automate the computation of
+  <m:math>
+    <m:ci>
+      <m:msub>
+        <m:ci>N</m:ci>
+        <m:ci>L</m:ci>
+      </m:msub>
+    </m:ci>
+  </m:math>
+for many different combinations of parameter values is to use a for loop. (Read 
+<link document="m13716">Programming in LABVIEW MATHSCRIPT-For Loops</link>
+if you are not familiar with the use of for loops in LABVIEW MATHSCRIPT.) The following problems ask you to develop several different ways that for loops can be used to automate these computations.</para><exercise id="ExFirstFor">
+<problem id="ProbFirstFor">
+<title>Use a for loop</title>
+<para id="ParaFirstFor">
+Add a for loop to your M-File from <link target-id="ProbFMile"/> to compute   
+<m:math>
+<m:ci>
+  <m:msub>
+    <m:ci>N</m:ci>
+    <m:ci>L</m:ci>
+  </m:msub>
+</m:ci>
+</m:math>
+for 
+  <m:math>
+    <m:apply>
+      <m:eq/>
+        <m:ci> b </m:ci>
+        <m:cn> 8 in </m:cn>
+    </m:apply>
+  </m:math>,
+<m:math>
+<m:apply>
+  <m:eq/>
+    <m:ci> h </m:ci>
+    <m:cn> 14 in </m:cn>
+</m:apply>
+</m:math>,
+and values of <m:math> <m:ci> d </m:ci> </m:math>
+ranging from 1.0 in to 2.0 in.
+</para>
+</problem>
+<solution id="idm7277824">
+<para id="SolFirstFor">
+This solution is by BrieAnne Davis.
+<code display="block" id="idm831392">
+for d=1.0:.05:2.0
+    b=8;
+    h=14;
+    vcyl=h*pi*(b/2)^2
+    vcube=d^3
+    nl=vcyl/vcube
+end
+</code>
+
+</para>
+</solution>
+</exercise> 
+<exercise id="ExSecFor">
+<problem id="ProbSecFor">
+<title>Can you still use a for loop?</title>
+<para id="ParaSecFor">
+Modify your M-File from <link target-id="ProbFirstFor"/> to <emphasis>plot</emphasis>    
+<m:math>
+<m:ci>
+  <m:msub>
+    <m:ci>N</m:ci>
+    <m:ci>L</m:ci>
+  </m:msub>
+</m:ci>
+</m:math>
+as a function of <m:math> <m:ci> d </m:ci> </m:math>
+for 
+  <m:math>
+    <m:apply>
+      <m:eq/>
+        <m:ci> b </m:ci>
+        <m:cn> 8 in </m:cn>
+    </m:apply>
+  </m:math> and
+<m:math>
+<m:apply>
+  <m:eq/>
+    <m:ci> h </m:ci>
+    <m:cn> 14 in </m:cn>
+</m:apply>
+</m:math>.
+</para>
+</problem>
+<solution id="idm1359248">
+<para id="SolSecFor1">This solution is by Wade Stevens.  Note that it uses the LABVIEW MATHSCRIPT <code>hold on</code> command after the plot statement to plot  each point individually in the for loop.
+<code display="block" id="idm8151600">clear all
+for d=1.0:0.1:2.0;
+    b=8;
+    h=14;
+    C=h*pi*(b/2)^2; %volume of cylinder
+    c=d^3; %volume of cube
+    N=C/c; %Lower bound
+    floor(N)
+    plot (d,N,'g*')
+    hold on
+end
+</code>
+This solution creates the plot in <link target-id="FigStevensP3"/>.
+<figure id="FigStevensP3"><media id="idm7493312" alt=""><image src="../../media/Solution_4_2.bmp" mime-type="image/bmp"/><image for="pdf" src="../../media/StevensPlot.eps" mime-type="application/postscript"/></media>
+  <caption>
+    Plot of <m:math>
+<m:ci>
+  <m:msub>
+    <m:ci>N</m:ci>
+    <m:ci>L</m:ci>
+  </m:msub>
+</m:ci>
+</m:math>
+as a function of <m:math> <m:ci> d </m:ci> </m:math>; each point plotted individually.
+  </caption>
+</figure>
+
+</para>
+
+<para id="SolSecFor2">
+This  different solution is by Christopher Embrey. It uses the index variable <code>j</code> to step through the <code>dv</code> array to compute elements of the <code>nlv</code> array;  the complete <code>nlv</code> array is computed, and then plotted outside the for loop.
+<code display="block" id="idp1759744">
+clear
+dv=1.0:.05:2.0;
+ 
+[junk,dvsize] = size(dv)
+for j=1:dvsize
+    d=dv(j)
+    b=8; %in
+    h=14; %in
+    vcyl=h*pi*(b/2)^2;
+    vcube=d^3;
+    nl=vcyl/vcube; 
+    nlv(j)=nl;
+end
+plot (dv,nlv)
+</code>
+This solution creates the plot in <link target-id="FigEmbryP3"/>.
+<figure id="FigEmbryP3"><media id="idm1021840" alt=""><image src="../../media/Solution_4.bmp" mime-type="image/bmp"/><image for="pdf" src="../../media/EmbreyPlot.eps" mime-type="application/postscript"/></media>
+  <caption>
+    Plot of <m:math>
+<m:ci>
+  <m:msub>
+    <m:ci>N</m:ci>
+    <m:ci>L</m:ci>
+  </m:msub>
+</m:ci>
+</m:math>
+as a function of <m:math> <m:ci> d </m:ci> </m:math>; points plotted as vectors.
+  </caption>
+</figure>
+
+</para>
+
+<para id="SolSecFor3">
+And finally, this solution by Travis Venson uses LABVIEW MATHSCRIPT's vector capabilities to perform the computation without a for loop.
+<code display="block" id="idp1666144">
+%creates a vector for diameter
+dv=1:.02:2;
+b=5.5;
+h=12;
+ 
+%computes volume of cylinder
+vcyl=h*pi*(b/2)^2;
+ 
+%computes volume of cube
+vcube=dv.^3;
+ 
+%computes lower bound
+lowerboundv=vcyl./vcube;
+ 
+%plots results
+plot(dv,lowerboundv)
+</code>
+</para>
+</solution>
+</exercise> 
+<exercise id="ExThirdFor">
+<problem id="ProbThirdFor">
+<title>More loops?</title>
+<para id="ParaThirdFor">
+Modify your M-File from <link target-id="ProbFirstFor"/> to compute    
+<m:math>
+<m:ci>
+  <m:msub>
+    <m:ci>N</m:ci>
+    <m:ci>L</m:ci>
+  </m:msub>
+</m:ci>
+</m:math>
+for 
+  <m:math>
+    <m:apply>
+      <m:eq/>
+        <m:ci> d </m:ci>
+        <m:cn> 1.54 in </m:cn>
+    </m:apply>
+  </m:math>
+and various values of <m:math> <m:ci> b </m:ci> </m:math> and <m:math> <m:ci> h </m:ci> </m:math>.
+</para>
+</problem>
+<solution id="idp3553616">
+<para id="SolThirdFor">
+This solution is by AJ Smith.  The height, <code>h</code>, ranges from 12 to 15 and the base, <code>b</code>, ranges from 8 to 12.
+<code display="block" id="idp31712">
+for h=12:15; %ranges of height
+    for b=8:12; %ranges of the base
+        d=1.54; %diameter of ping pong ball.
+        Vcyl=h*pi*(b/2)^2; %Volume of cylinder
+        Vcube=d^3; %volume of a cube that encloses a single ball
+        Nl=Vcyl/Vcube %lower bound on the number of balls that fit in the cylinder
+    end
+end
+</code>
+</para>
+</solution>
+</exercise> 
+</section>
+
+  </content>
+<bib:file>
+  <bib:entry id="HTMI">
+    <bib:book>
+      <bib:author>Anthony M. Starfield; Karl A. Smith; Andrew L. Bleloch</bib:author>
+      <bib:title>How To Model It: Problem Solving for the Computer Age</bib:title>
+      <bib:publisher>Interaction Book Company</bib:publisher>
+      <bib:year>1994</bib:year>
+      <bib:address>Edina, MN</bib:address>
+    </bib:book>
+  </bib:entry>
+</bib:file>
+
+</document>

@@ -1,0 +1,53 @@
+<col:collection xmlns="http://cnx.rice.edu/collxml" xmlns:md="http://cnx.rice.edu/mdml" xmlns:col="http://cnx.rice.edu/collxml" xml:lang="en">
+  <metadata xmlns:md="http://cnx.rice.edu/mdml" mdml-version="0.5">
+    <md:content-id>col10370</md:content-id>
+    <md:title>Introduction to LabVIEW MathScript</md:title>
+    <md:language>en</md:language>
+    <md:license url="http://creativecommons.org/licenses/by/2.0/">Creative Commons Attribution License</md:license>
+    <md:uuid>5dfd0fc0-704d-4637-9448-77b0ad4b732f</md:uuid>
+<md:slug>freshman-engineering-applications-of-labview-mathscript</md:slug>
+</metadata>
+  <col:content>
+    <col:subcollection>
+      <md:title>LabVIEW MathScript Basics</md:title>
+      <col:content>
+        <col:module document="m13712"/>
+        <col:module document="m13726"/>
+        <col:module document="m13727"/>
+        <col:module document="m13728"/>
+      </col:content>
+    </col:subcollection>
+    <col:subcollection>
+      <md:title>Programming in LabVIEW MathScript</md:title>
+      <col:content>
+        <col:module document="m13713"/>
+        <col:subcollection>
+          <md:title>For Loops</md:title>
+          <col:content>
+            <col:module document="m13716"/>
+            <col:module document="m13723"/>
+            <col:module document="m13717"/>
+            <col:module document="m13715"/>
+          </col:content>
+        </col:subcollection>
+        <col:subcollection>
+          <md:title>Conditionals</md:title>
+          <col:content>
+            <col:module document="m13720"/>
+            <col:module document="m13721"/>
+            <col:module document="m13724"/>
+            <col:module document="m13719"/>
+          </col:content>
+        </col:subcollection>
+        <col:subcollection>
+          <md:title>While Loops</md:title>
+          <col:content>
+            <col:module document="m13722"/>
+            <col:module document="m13725"/>
+            <col:module document="m13718"/>
+          </col:content>
+        </col:subcollection>
+      </col:content>
+    </col:subcollection>
+  </col:content>
+</col:collection>

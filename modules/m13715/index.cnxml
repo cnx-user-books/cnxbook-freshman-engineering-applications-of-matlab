@@ -1,0 +1,266 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:md="http://cnx.rice.edu/mdml">
+  <title>Programming in LabVIEW MathScript-A Data Analysis Example Using For Loops</title>
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>cb11f97d-5bd3-4a01-9b19-ddd4f61b0932</md:uuid>
+</metadata>
+  <content>
+
+<note id="idp865616">
+This example requires an understanding of the relationships between position, velocity, and acceleration of an object moving in a straight line. The Wikipedia article
+<link url="http://en.wikipedia.org/wiki/Motion_graphs_and_derivatives">
+ <cite><cite-title>Motion Graphs and Derivatives</cite-title></cite></link>
+has a clear explanation of these relationships, as well as a discussion of average and instantaneous velocity and acceleration and the role derivatives play in these relationships.  Also, in  this example, we will approximate derivatives with forward, backward, and central differences; <link url="http://dmpeli.math.mcmaster.ca/LabVIEW MathScript/Math1J03/LectureNotes/Lecture4_1.htm">
+<cite><cite-title> Lecture 4.1 </cite-title></cite> by Dr. Dmitry Pelinovsky at McMaster University </link> contains useful information about this approximation.  We will also approximate integrals using the trapezoidal rule; The Wikipedia article
+<link url="http://en.wikipedia.org/wiki/Trapezoidal_rule">
+ <cite><cite-title>Trapezium rule</cite-title></cite></link>
+has an explanation of the trapezoidal rule.
+</note>
+
+<section id="SecRocket">
+	  <title>Trajectory Analysis of an Experimental Homebuilt Rocket</title>
+
+
+<para id="ParaRocket1">
+On his web page
+<link url="http://www.nakka-rocketry.net/ff-2.html">
+<cite><cite-title>Richard Nakka's Experimental Rocketry Web Site: Launch Report - Frostfire Two  Rocket</cite-title></cite></link>, 
+Richard Nakka
+provides a very detailed narrative of the test firing of his  Frostfire Two homebuilt rocket  and subsequent data analysis. (<link url="http://www.nakka-rocketry.net/">His site</link> provides many detailed accounts of tests of rockets and rocket motors.  Some rocket launches were not as successful as the Frostfire Two launch; his site provides very interesting post-flight analysis of all launches.)
+</para>
+</section>
+<section id="Sec2">
+	  <title>Computation of Velocity and Acceleration from Altitude Data</title>
+
+<para id="xyzzy">In this  section, we will use LABVIEW MATHSCRIPT to analyze the altitude data extracted from the plot "Altitude and Acceleration Data from R-DAS" on Richard Nakk's web page.  This data is in the file <link resource="Altitude.csv">Altitude.csv</link>.
+We will use this data to estimate velocity and acceleration of the Frostfire Two rocket during its flight.
+</para>
+
+<exercise id="E1">
+<problem id="P1">
+<title>Get the data</title>
+<para id="Pa1">Download the altitude data set in the file <link resource="Altitude.csv">Altitude.csv</link> (right click on the file's link) onto your computer.  Then be sure to save the file to your MATHSCRIPT working directory.  This can be determined by navigating to the File/MathScript Perferences tab.  The file is formatted as two columns: the first column is time in seconds, and the second column is altitude in feet. Load the data into LABVIEW MATHSCRIPT and plot the altitude as a function of time.
+</para>
+</problem>
+</exercise>
+<para id="S1">
+The following sequence of LABVIEW MATHSCRIPT commands will load the data, create a vector <code>t</code> of time values, create a vector <code>s</code> of altitude values, and plot the altitude as a function of time.
+<code display="block" id="idp10473664">Altitude = csvread('Altitude.csv');
+t =Altitude(:,1);
+s =Altitude(:,2);
+plot(t,s)
+</code>
+The plot should be similar to that in <link target-id="FigAltPlot"/>.
+<figure id="FigAltPlot"><media id="idp9789536" alt=""><image src="../../media/Figure1_A_Data_Anayl.bmp" mime-type="image/bmp"/><image for="pdf" src="../../media/AltPlot.eps" mime-type="application/postscript"/></media>
+  <caption>
+    Plot of altitude versus time.
+  </caption>
+</figure>
+
+</para>
+
+<exercise id="E2">
+<problem id="P2">
+<title>Forward Differences</title>
+<para id="Pa2">
+Write a LABVIEW MATHSCRIPT script that uses a for loop to compute velocity and acceleration from the altitude data using forward differences. Your script should also plot the computed velocity and acceleration as function of time.
+</para>
+</problem>
+<solution id="idp6779120">
+<para id="S2">This solution is by Scott Jenne; it computes and plots the velocity:
+<code display="block" id="idp832288">Altitude = csvread('Altitude.csv');
+t=Altitude(:,1);
+s=Altitude(:,2);
+for n=1:180;
+    v=((s(n+1))-s(n))/((t(n+1))-t(n));
+    hold on
+    plot(t(n),v,'o')
+end
+</code>
+The plot produced by this code is shown in <link target-id="FigP2Plot"/>.
+<figure id="FigP2Plot"><media id="idp1068032" alt=""><image src="../../media/Solution2_Data.bmp" mime-type="image/bmp"/><image for="pdf" src="../../media/P2Plot.eps" mime-type="application/postscript"/></media>
+  <caption>
+    Plot of velocity computed with the forward difference method versus time.
+  </caption>
+</figure>
+
+</para>
+</solution>
+</exercise>
+
+<exercise id="E3">
+<problem id="P3">
+<title>Backward Differences</title>
+<para id="Pa3">
+Modify your script from <link target-id="P2"/> to compute velocity and acceleration using backward differences.  Remember to save  your modified script with a different name than your script from <link target-id="P2"/>.
+</para>
+</problem>
+<solution id="idp9746128">
+<para id="S3">This solution by Bryson Hinton:
+<code display="block" id="idp9310864">Altitude = csvread('Altitude.csv');
+t=Altitude(:,1);
+s=Altitude(:,2); 
+for x=2:181
+    v(x)=(s(x)-s(x-1))/(t(x)-t(x-1));
+    plot(t(x),v(x),'b.')
+    hold on
+end</code>
+The plot produced by this code is shown in <link target-id="FigP3Plot"/>.
+<figure id="FigP3Plot"><media id="idp9659936" alt=""><image src="../../media/Solution3_Data.bmp" mime-type="image/bmp"/><image for="pdf" src="../../media/P3Plot.eps" mime-type="application/postscript"/></media>
+  <caption>
+    Plot of velocity computed with the backward difference method versus time.
+  </caption>
+</figure>
+
+
+</para>
+</solution>
+</exercise>
+
+<exercise id="E4">
+<problem id="P4">
+<title>Central Differences</title>
+<para id="Pa4">
+Modify your script from <link target-id="P2"/> to compute velocity and acceleration using central differences.  Remember to save  your modified script with a different name than your script from <link target-id="P2"/> and <link target-id="P3"/>.
+</para>
+</problem>
+<solution id="idp8135472">
+<para id="S4">This code computes the velocity using the central difference formula.
+<code display="block" id="idp7196384">clear all
+Altitude = csvread('Altitude.csv');
+t=Altitude(:,1);
+s=Altitude(:,2); 
+for n=2:180
+    v(n-1)=(s(n+1)-s(n-1))/(t(n+1)-t(n-1));
+end
+plot(t(2:180),v)</code>
+The plot produced by this code is shown in <link target-id="FigP4Plot"/>.
+<figure id="FigP4Plot"><media id="idp739904" alt=""><image src="../../media/Solution4_Data.bmp" mime-type="image/bmp"/><image for="pdf" src="Solution4_Data.eps" mime-type="application/postscript"/></media>
+  <caption>
+    Plot of velocity computed with the central difference method versus time.
+  </caption>
+</figure>
+
+</para>
+</solution>
+</exercise>
+
+<para id="Blah">
+Compare the velocity and acceleration values computed by the different approximations. What can you say about their accuracy?
+</para>
+
+<exercise id="E5">
+<problem id="P5">
+<title>Can it be done without loops?</title>
+<para id="Pa5">
+Modify your script from <link target-id="P2"/> to compute velocity and acceleration without using a for loop.
+</para>
+</problem>
+<solution id="idp1336752">
+<para id="S5">
+This code uses LABVIEW MATHSCRIPT's <code>diff</code> function to compute the difference between adjacient elements of <code>t</code> and <code>s</code>, and the <code>./</code> function to divide each element of the altitude differences with the corresponding element of the time differences:
+<code display="block" id="idm115152">clear all
+Altitude = csvread('Altitude.csv');
+t=Altitude(:,1);
+s=Altitude(:,2); 
+v=diff(s)./diff(t);
+plot(t(1:180),v)
+</code>
+The plot produced by this code is shown in <link target-id="FigP5Plot"/>.
+<figure id="FigP5Plot"><media id="idp9562496" alt=""><image src="../../media/Solution5_Data.bmp" mime-type="image/bmp"/><image for="pdf" src="../../media/P5Plot.eps" mime-type="application/postscript"/></media>
+  <caption>
+    Plot of velocity computed with the forward difference method versus time.  The values in this plot are the same as in <link target-id="FigP2Plot"/>.
+  </caption>
+</figure>
+
+</para>
+</solution>
+</exercise>
+</section>
+<section id="Sec3">
+	  <title>Computation of Velocity and Altitude from Acceleration  Data</title>
+<para id="xx1">In this  section, we will use LABVIEW MATHSCRIPT to analyze the acceleration data extracted from the plot "Altitude and Acceleration Data from R-DAS" on Richard Nakk's web page.  Download the acceleration data set in the file <link resource="Acceleration.csv">Acceleration.csv</link> (right click on the file's link) onto your computer. The first column is time in seconds, and the second column is acceleration in g's. The following commands load the data into LABVIEW MATHSCRIPT and plot the acceleration as a function of time.
+<code display="block" id="idm233040">Acceleration = csvread('Acceleration.csv');
+t = Acceleration(:,1);
+a = Acceleration(:,2);
+plot(t,a)
+</code>
+The plot should be similar to that in <link target-id="FigAccPlot"/>.
+<figure id="FigAccPlot"><media id="idp731840" alt=""><image src="../../media/Fig6_Data.bmp" mime-type="image/bmp"/><image for="pdf" src="../../media/AccPlot.eps" mime-type="application/postscript"/></media>
+  <caption>
+    Plot of acceleration versus time.
+  </caption>
+</figure>
+</para>
+
+<exercise id="E2a">
+<problem id="P2a">
+<title>Trapezoidal Rule</title>
+<para id="Pa2a">
+Write a LABVIEW MATHSCRIPT script that uses a for loop to compute velocity and altitude from the acceleration data using the trapezoidal rule. Your script should also plot the computed velocity and altitude as function of time.
+</para>
+</problem>
+<solution id="idp8948000">
+<para id="S2a">
+This solution is by Jonathan Selby:
+<code display="block" id="idp10096688">Acceleration = csvread('Acceleration.csv');
+t=Acceleration (:,1);
+a=Acceleration (:,2);
+v(1)=0;
+for n=1:181
+    v(n+1)=(t(n+1)-t(n))*(a(n+1)+a(n))/2+v(n);
+end
+plot(t,v)</code>
+This code creates the plot in <link target-id="FigVPlot"/>.
+<figure id="FigVPlot"><media id="idp7834912" alt=""><image src="../../media/Solution6_Data.bmp" mime-type="image/bmp"/><image for="pdf" src="../../media/VPlot.eps" mime-type="application/postscript"/></media>
+  <caption>
+    Plot of  velocity versus time. The velocity is computed by numerically integrating the  measured acceleration.
+  </caption>
+</figure>
+This code can be easily extended to also compute altitude  while it is computing velocity:
+<code display="block" id="idp9671344">Acceleration = csvread('Acceleration.csv');
+t=Acceleration (:,1);
+a=Acceleration (:,2);
+v(1)=0; % Initial velocity
+s(1)=0; % Initial altitude
+for n=1:181
+    v(n+1)=(t(n+1)-t(n))*(a(n+1)+a(n))/2+v(n);
+    s(n+1)=(t(n+1)-t(n))*(v(n+1)+v(n))/2+s(n);
+end
+plot(t,s)
+</code>
+This code creates the plot in <link target-id="FigSPlot"/>.
+<figure id="FigSPlot"><media id="idp787440" alt=""><image src="../../media/Solution6_2_Data.bmp" mime-type="image/bmp"/><image for="pdf" src="../../media/SPlot.eps" mime-type="application/postscript"/></media>
+  <caption>
+    Plot of  altitude versus time.
+  </caption>
+</figure>
+</para>
+</solution>
+</exercise>
+
+<exercise id="E5a">
+<problem id="P5a">
+<title>Can it be done without loops?</title>
+<para id="Pa5a">
+Modify your script from <link target-id="P2a"/> to compute velocity and altitude without using a for loop.
+</para>
+</problem>
+<solution id="idp11121920">
+<para id="S5a">This solution by Nicholas Gruman uses the LABVIEW MATHSCRIPT <code>trapz</code> function to compute velocity  with the trapezoidal rule with respect to time at all given points in time:
+<code display="block" id="idp7469184">Acceleration = csvread('Acceleration.csv');
+t=Acceleration(:,1);
+A=Acceleration(:,2);
+c = length(t);
+for i = 1:c
+     v(i)=trapz(t(1:i),A(1:i));
+end</code>
+Altitude could also be computed by adding the following line in the same For loop as the previous code:
+<code display="block" id="idp11774768">s(i)=trapz(t(1:i),v(1:i));
+</code>
+</para>
+</solution>
+</exercise>
+
+</section>
+  </content>
+  
+</document>

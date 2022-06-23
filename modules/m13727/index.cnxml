@@ -1,0 +1,43 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:md="http://cnx.rice.edu/mdml">
+  <title>Vectors and Arrays in LabVIEW MathScript</title>
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>fdaf3a73-4a07-4822-b5f3-718429a8376f</md:uuid>
+</metadata>
+  <content>
+<section id="id1">
+	  <title>Vectors and Arrays in LABVIEW MATHSCRIPT</title>
+
+    <para id="delete_me">An excellent tutorial on how to use LABVIEW MATHSCRIPT's vector  and array capabilities is at the <link url="http://zone.ni.com/devzone/conceptd.nsf/webmain/76529B03846251A58625709600631C80"> Inside LABVIEW MATHSCRIPT Tutorial.
+</link>  Here you can view the general use of LABVIEW MATHSCIRPT and find usefull information about data handling capabilities such as arrays and vecotrs.
+
+    </para><para id="element-679">One useful method of accessing entire rows or entire columns of the matrix is not mentioned in the tutorial. Suppose that the matrix <code>A</code> is defined as
+<code display="block" id="idm9043808">&gt;&gt;A = [1  2  3  4  5
+        6  7  8  9  10
+        11 12 13 14 15
+        16 17 18 19 20]
+A =
+
+           1       2       3       4       5      
+           6       7       8       9       10     
+           11      12      13      14      15     
+           16      17      18      19      20  </code>
+An entire row of <code>A</code> can be obtained by specifying a single ":" as the column index:
+<code display="block" id="idm8491552">&gt;&gt;A(2,:)
+ans =
+
+           6       7       8       9       10 
+    
+</code>
+Similarly, an entire  column of <code>A</code> can be obtained by specifying a single ":" as the  row index:
+<code display="block" id="idm1427520">&gt;&gt;A(:,3)
+ans =
+
+           3      
+           8      
+           13     
+           18  </code>
+
+</para>   
+</section>
+  </content>
+  
+</document>

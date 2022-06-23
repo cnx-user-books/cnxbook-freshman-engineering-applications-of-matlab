@@ -1,0 +1,16 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:md="http://cnx.rice.edu/mdml">
+  <title>A Very Brief Introduction to Programming in LabVIEW MathScript</title>
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>ec41839a-46c7-4d74-9626-3cbb75f41663</md:uuid>
+</metadata>
+  <content>
+    <para id="FirstP">You can use LABVIEW MathScript code to automate computations. Almost anything typed at the command line can also be included in a LABVIEW MathScript program.  Lines in a LABVIEW MathScript script are interpreted  sequentially and the instructions  are executed  in turn. This simplifies repetitive computations. This allows you to create complex computations that cannot be readily implemented using commands at the command line. You can also create computational capabilities for other people to use.
+</para>
+<para id="element-753"> LABVIEW MATHSCRIPT scripts are text files and can be edited by any text editor. Any script should run the same on any computer running LABVIEW MATHSCRIPT regardless of its operating system. Script files must have an extension of ".m" and be in a directory that LABVIEW MATHSCRIPT knows about.</para>
+<para id="element-662">LABVIEW MATHSCRIPT scripts interact with the current LABVIEW MathScript environment. Variables set before the script is executed can affect what happens in the script. Variables set in the script remain after the script has finished execution.</para>
+<para id="element-64">One way to edit LABVIEW MATHSCRIPT scripts is to use the built-in editor.  The editor has some features that make editing LABVIEW MATHSCRIPT scripts easier.  The editor is integrated with the debugger which makes finding and correcting errors in your scripts easier. More detailed information about editing scripts can be found at <link url="http://zone.ni.com/devzone/conceptd.nsf/webmain/76529B03846251A58625709600631C80"> National Instruments LabVIEW MathScript Tutorial-Inside LabVIEW MathScript Tutorial</link>.</para>
+<para id="element-981">Use comments to remind you and help other users understand  how you have implemented your program.  Comments  begin with the character %.</para>
+<para id="element-307">For LABVIEW MATHSCRIPT to correctly execute a script, it must know the directory in which the script  resides. There are several ways to do this. One is to set the current  working directory for LABVIEW MATHSCRIPT from the File&gt;MathScript Preferences in the MathScript interactive window.  More detailed information can be found at <link url="http://zone.ni.com/reference/en-XX/help/371361A-01/lvdialog/mathscript_preferences_db/">
+National Instrument's LabVIEW MathScript Preferences Dialog Box</link>.</para><para id="element-95">M-file names should begin with a letter and only contain letters and numbers.  Any other characters (space, dash, star, slash, etc.) will be interpreted by LABVIEW MATHSCRIPT as operations on variables and will cause errors.  Also, M-file names should not be the same as variables in the workspace, since LABVIEW MATHSCRIPT will not be able to differentiate between the file name and the variable.</para>   
+  </content>
+  
+</document>

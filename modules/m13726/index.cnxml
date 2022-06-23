@@ -1,0 +1,106 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml">
+<title>Variables in LabVIEW MathScript</title>
+<metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>2845c3a0-01ef-46ac-ad89-60092b84b8c7</md:uuid>
+</metadata>
+<content>
+<section id="id11633588">
+<title>Variables in LABVIEW MATHSCRIPT</title>
+<para id="id11557840">
+A variable in LABVIEW MATHSCRIPT is a named value. Using variables allows us to manipulate values symbolically, which is particularly useful when programming.
+</para>
+
+<example id="id1">
+<para id="id2">
+Suppose we wish to compute the circumference of a circle of diameter 5 units using the formula
+<m:math>
+  <m:apply>
+    <m:eq/>
+      <m:ci> c </m:ci>
+      <m:apply>
+        <m:times/>
+          <m:ci> π </m:ci>
+          <m:ci> d </m:ci>
+      </m:apply>
+  </m:apply>
+</m:math>
+. We could first set the variable <code>d</code> to a value of 5:
+<code display="block" id="idp2433312">
+&gt;&gt; d = 5
+
+d =
+
+    5.000
+
+</code>
+Then we could compute the circumference and assign its value to the variable
+<code>c</code>:
+<code display="block" id="idp4830320">
+&gt;&gt; c = pi*d
+
+c =
+
+    15.708
+
+</code>
+To execute this command, LABVIEW MATHSCRIPT computes the product of the value of <code>d</code>
+(which LABVIEW MATHSCRIPT knows because we earlier set it to 5) and the value of <code>pi</code> (which is a pre defined variable in LABVIEW MATHSCRIPT) and stores the value of the product in the variable <code>c</code>.
+</para>
+</example>
+
+<para id="id3">
+Variable names must begin with an upper- or lower-case letter. They may contain letters, digits, and underscores; they may not contain spaces or punctuation characters. LABVIEW MATHSCRIPT is case sensitive, so <code>A</code> and <code>a</code> are different variables.
+</para>
+<exercise id="id4">
+<problem id="id5">
+<title>Valid variable names</title>
+<para id="id6">
+Which of the following are valid variable names?
+<list id="id8" list-type="enumerated">
+  <item><code>a</code></item>
+  <item><code>B</code></item>
+  <item><code>ecky_ecky_ecky_ecky_ptang_zoo_boing</code></item>
+  <item><code>ecky ecky ecky ecky ptang zoo boing</code></item>
+  <item><code>2nd</code></item>
+  <item><code>John-Bigboote</code></item>
+</list>
+</para>
+</problem>
+<solution id="idp225008">
+<list id="id9" list-type="enumerated">
+  <item>Valid.</item>
+  <item>Valid.</item>
+  <item>Valid.</item>
+  <item>Invalid, because the variable name contains spaces.</item>
+  <item>Invalid, because the variable name  begins with a number.</item>
+  <item>Invalid, because the variable name  contains a dash.</item>
+</list>
+</solution>
+</exercise> 
+<para id="id10">
+LABVIEW MATHSCRIPT has several predefined variables. The most commonly used include
+<list id="id11" list-type="bulleted">
+  <item><code>ans</code> - the default variable in which computation results are stored.</item>
+  <item><code>pi</code> - π.</item>
+  <item><code>i</code> or <code>j</code> - 
+<m:math>
+  <m:apply>
+    <m:root/>
+      <m:cn> -1 </m:cn>
+  </m:apply>
+</m:math>
+.</item>
+</list>
+Once assigned, variable names remain until they are reassigned or eliminated by the <code>clear</code> command.
+</para>
+
+<para id="id12">
+LABVIEW MATHSCRIPT variables can contain several types of  numerical values. These types include the following:
+<list id="id13" list-type="bulleted"><item>Scalar values - scalar is a mathematical term for a single value (i.e. a number). <code>c</code> and <code>d</code> in <link target-id="id1"/> are scalar variables.</item>
+  <item>Vectors - a vector is an ordered series of numbers.</item>
+  <item>strings - LABVIEW MATHSCRIPT variables may also contain strings of characters.</item>
+</list>
+</para>
+
+</section>
+</content>
+</document>

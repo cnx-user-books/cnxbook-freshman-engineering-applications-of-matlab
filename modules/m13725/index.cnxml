@@ -1,0 +1,113 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:md="http://cnx.rice.edu/mdml">
+  <title>Programming in LabVIEW MathScript-Simple While Loop Exercises</title>
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>29ce7459-8b50-4543-b845-96f0beebcec7</md:uuid>
+</metadata>
+<content>
+
+  <section id="SecReview">
+    <title>Some While Loop Exercises</title>
+
+    <exercise id="ExAa">
+      <problem id="ProbAa">
+        <para id="ParaAa">
+          How many times will this loop print 'Hello World'?
+          <code display="block" id="idm1209104">
+n = 10;
+while n &gt; 0
+    disp('Hello World')
+    n = n - 1;
+end
+</code>
+        </para>
+      </problem>
+      <solution id="idp9664">
+        <para id="SolAa">10 times.
+        </para>
+      </solution>
+    </exercise>
+
+    <exercise id="Ex2">
+      <problem id="Prob2">
+        <para id="Par2">
+          How many times will this loop print 'Hello World'?
+          <code display="block" id="idm209776">
+n = 1;
+while n &gt; 0
+    disp('Hello World')
+    n = n + 1;
+end
+</code>
+        </para>
+      </problem>
+      <solution id="idp1021808">
+        <para id="Sol2a">This loop will continue to print 'Hello World' until the user stops the program.  You can stop a program by holding down the 'Ctrl' key and simultaneously pressing the 'c' key.
+        </para>
+      </solution>
+    </exercise>
+
+    <exercise id="Ex3">
+      <problem id="Prob3">
+        <para id="Par3">
+          What values will the following LABVIEW MATHSCRIPT code print?
+          <code display="block" id="idp4653056">a = 1
+while a &lt; 100
+    a = a*2
+end
+</code>
+        </para>
+      </problem>
+      <solution id="idm2824848">
+        <para id="Sol3a"><code display="block" id="idp4476048">a =
+     1
+a =
+     2
+a =
+     4
+a =
+     8
+a =
+    16
+a =
+    32
+a =
+    64
+a =
+   128</code>
+        </para>
+      </solution>
+    </exercise>
+
+    <exercise id="Ex4">
+      <problem id="Prob4">
+        <para id="Par4">
+          What values will the following LABVIEW MATHSCRIPT code print?
+          <code display="block" id="idp97248">
+a = 1;
+n = 1;
+while a &lt; 100
+    a = a*n
+    n = n + 1;
+end
+</code>
+        </para>
+      </problem>
+      <solution id="idp78704">
+        <para id="Sol4a"><code display="block" id="idm7862720">
+a =
+     1
+a =
+     2
+a =
+     6
+a =
+    24
+a =
+   120
+</code>     </para>
+      </solution>
+    </exercise>
+
+  </section> 
+</content>
+  
+</document>
